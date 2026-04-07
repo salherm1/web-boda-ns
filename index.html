@@ -1747,29 +1747,14 @@
           <div id="admin-pw-error" class="alert alert-error" style="display:none;margin-top:1rem;"
                data-es="Contraseña incorrecta" data-en="Wrong password">Contraseña incorrecta</div>
         </div>
-        <div id="admin-panel" style="display:none;">
-          <div class="admin-stats" id="admin-stats"></div>
-          <div style="overflow-x:auto;">
-            <table id="admin-table">
-              <thead>
-                <tr>
-                  <th data-es="Nombre" data-en="Name">Nombre</th>
-                  <th data-es="Adultos" data-en="Adults">Adultos</th>
-                  <th data-es="Niños" data-en="Kids">Niños</th>
-                  <th data-es="Bebés" data-en="Babies">Bebés</th>
-                  <th data-es="Transporte" data-en="Transport">Transporte</th>
-                  <th data-es="Pre-boda" data-en="Pre-wed">Pre-boda</th>
-                  <th data-es="Alergias" data-en="Allergies">Alergias</th>
-                  <th data-es="Canciones" data-en="Songs">Canciones</th>
-                  <th data-es="Mensaje" data-en="Message">Mensaje</th>
-                  <th data-es="Fecha" data-en="Date">Fecha</th>
-                </tr>
-              </thead>
-              <tbody id="admin-tbody"></tbody>
-            </table>
-          </div>
-          <button class="btn-primary" style="width:auto;margin-top:1.5rem;" onclick="exportCSV()"
-                  data-es="Exportar CSV" data-en="Export CSV">Exportar CSV</button>
+        <div id="admin-panel" style="display:none;text-align:center;padding:1.5rem 0;">
+          <p style="font-size:0.9rem;color:var(--mid);margin-bottom:1.5rem;line-height:1.7;">
+            Las respuestas se guardan directamente en Google Sheets.<br>
+            Haz clic para abrirlas:
+          </p>
+          <button class="btn-primary" style="width:auto;" onclick="openSheets()">
+            📊 Ver respuestas en Google Sheets
+          </button>
         </div>
       </div>
     </div>
@@ -1809,6 +1794,19 @@
 <script>
 // ─── LANGUAGE ───
 let currentLang = 'es';
+
+// Auto-detect device language on load
+(function detectLang() {
+  const langs = navigator.languages || [navigator.language || navigator.userLanguage || 'es'];
+  for (const l of langs) {
+    const code = l.toLowerCase();
+    if (code.startsWith('ca') || code.startsWith('va')) { currentLang = 'va'; break; }
+    if (code.startsWith('es')) { currentLang = 'es'; break; }
+    if (code.startsWith('en')) { currentLang = 'en'; break; }
+  }
+  // If no match found, default to English
+  if (!['es', 'en', 'va'].includes(currentLang)) currentLang = 'en';
+})();
 
 // Valencian translations — complete
 const VA_TRANSLATIONS = {
@@ -2025,55 +2023,84 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
+// Apply auto-detected language on page load
+(function applyDetectedLang() {
+  if (currentLang === 'es') return; // ES is already the default HTML, nothing to do
+  // Activate the correct button
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  const activeBtn = document.querySelector(`.lang-btn[onclick="setLang('${currentLang}')"]`);
+  if (activeBtn) activeBtn.classList.add('active');
+  // Apply translations
+  if (currentLang === 'va') {
+    document.querySelectorAll('[data-es]').forEach(el => {
+      if (!el.getAttribute('data-va')) {
+        const esText = el.getAttribute('data-es');
+        const vaText = VA_TRANSLATIONS[esText];
+        el.setAttribute('data-va', vaText || esText);
+      }
+    });
+  }
+  document.querySelectorAll('[data-es]').forEach(el => {
+    const txt = el.getAttribute('data-' + currentLang);
+    if (!txt) return;
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.placeholder = txt;
+    else el.innerHTML = txt;
+  });
+  document.documentElement.lang = currentLang;
+})();
+
 // ─── RSVP STORAGE ───
-const RSVP_KEY = 'boda_rsvp_responses';
+// ─── GOOGLE SHEETS CONFIG ───
+// Pega aquí la URL de tu Apps Script deployment después de publicarlo
+const GOOGLE_SCRIPT_URL = 'PENDIENTE_URL_APPS_SCRIPT';
 
-async function loadRSVPs() {
-  try {
-    const result = await window.storage.get(RSVP_KEY, true); // shared storage
-    return result ? JSON.parse(result.value) : [];
-  } catch(e) { return []; }
-}
-
-async function saveRSVP(entry) {
-  const list = await loadRSVPs();
-  list.push(entry);
-  await window.storage.set(RSVP_KEY, JSON.stringify(list), true);
-}
-
+// ─── RSVP ───
 async function submitRSVP() {
   const name = document.getElementById('rsvp-name').value.trim();
   if (!name) {
-    showFeedback(currentLang === 'es' ? 'Por favor, escribe tu nombre.' : 'Please enter your name.', 'error');
+    showFeedback(currentLang === 'es' ? 'Por favor, escribe tu nombre.' : 'Si us plau, escriu el teu nom.', 'error');
+    return;
+  }
+
+  if (GOOGLE_SCRIPT_URL === 'PENDIENTE_URL_APPS_SCRIPT') {
+    showFeedback('⚠️ Falta configurar la URL del Apps Script.', 'error');
     return;
   }
 
   const btn = document.getElementById('rsvp-submit');
   btn.disabled = true;
-  btn.innerHTML = '<span class="spinner"></span>' + (currentLang === 'es' ? 'Enviando...' : 'Sending...');
+  btn.innerHTML = '<span class="spinner"></span>' + (currentLang === 'es' ? 'Enviando...' : 'Enviant...');
 
   const entry = {
     name,
-    adults: document.getElementById('rsvp-adults').value,
-    kids: document.getElementById('rsvp-kids').value,
-    babies: document.querySelector('input[name="babies"]:checked')?.value || 'no',
-    bus: document.querySelector('input[name="bus"]:checked')?.value || 'no',
-    preboda: document.querySelector('input[name="preboda"]:checked')?.value || 'no',
+    adults:    document.getElementById('rsvp-adults').value,
+    kids:      document.getElementById('rsvp-kids').value,
+    babies:    document.querySelector('input[name="babies"]:checked')?.value || 'no',
+    bus:       document.querySelector('input[name="bus"]:checked')?.value || 'no',
+    preboda:   document.querySelector('input[name="preboda"]:checked')?.value || 'no',
     allergies: document.getElementById('rsvp-allergies').value.trim(),
-    songs: document.getElementById('rsvp-songs').value.trim(),
-    message: document.getElementById('rsvp-msg').value.trim(),
-    date: new Date().toLocaleDateString('es-ES'),
-    timestamp: Date.now()
+    songs:     document.getElementById('rsvp-songs').value.trim(),
+    message:   document.getElementById('rsvp-msg').value.trim(),
   };
 
   try {
-    await saveRSVP(entry);
+    const response = await fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors', // Google Apps Script requiere no-cors
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(entry)
+    });
+    // no-cors no permite leer la respuesta, pero si no hay excepción es OK
     document.getElementById('rsvp-form').style.display = 'none';
     document.getElementById('rsvp-success').style.display = 'block';
   } catch(e) {
+    console.error('RSVP error:', e);
     btn.disabled = false;
-    btn.innerHTML = currentLang === 'es' ? 'Confirmar asistencia' : 'Confirm attendance';
-    showFeedback(currentLang === 'es' ? 'Error al guardar. Inténtalo de nuevo.' : 'Save error. Please try again.', 'error');
+    btn.innerHTML = currentLang === 'es' ? 'Confirmar asistencia' : 'Confirmar assistència';
+    showFeedback(
+      currentLang === 'es' ? 'Error al enviar. Inténtalo de nuevo.' : 'Error en enviar. Torna-ho a intentar.',
+      'error'
+    );
   }
 }
 
@@ -2085,65 +2112,19 @@ function showFeedback(msg, type) {
 }
 
 // ─── ADMIN ───
+// El admin ahora abre directamente Google Sheets en una nueva pestaña
 function adminLogin() {
   const pw = document.getElementById('admin-pw').value;
   if (pw === 'sn2026') {
     document.getElementById('admin-login').style.display = 'none';
     document.getElementById('admin-panel').style.display = 'block';
-    loadAdminData();
   } else {
     document.getElementById('admin-pw-error').style.display = 'block';
   }
 }
 
-async function loadAdminData() {
-  const list = await loadRSVPs();
-  const tbody = document.getElementById('admin-tbody');
-  tbody.innerHTML = '';
-
-  let totalAdults = 0, totalKids = 0, totalBus = 0, totalPreboda = 0;
-
-  list.forEach(r => {
-    totalAdults += parseInt(r.adults) || 0;
-    totalKids += parseInt(r.kids) || 0;
-    if (r.bus === 'si') totalBus++;
-    if (r.preboda === 'si') totalPreboda++;
-
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td><strong>${r.name}</strong></td>
-      <td>${r.adults}</td>
-      <td>${r.kids}</td>
-      <td>${r.babies && r.babies !== 'no' ? r.babies : '—'}</td>
-      <td>${r.bus === 'si' || r.bus === 'carcaixent' || r.bus === 'castello' ? '✅ ' + r.bus : '—'}</td>
-      <td>${r.preboda === 'si' ? '✅' : '—'}</td>
-      <td>${r.allergies || '—'}</td>
-      <td style="max-width:200px;font-size:0.8rem;">${r.songs || '—'}</td>
-      <td style="max-width:200px;font-size:0.8rem;">${r.message || '—'}</td>
-      <td>${r.date}</td>
-    `;
-    tbody.appendChild(tr);
-  });
-
-  document.getElementById('admin-stats').innerHTML = `
-    <div class="stat-box"><div class="stat-num">${list.length}</div><div class="stat-label">Confirmaciones</div></div>
-    <div class="stat-box"><div class="stat-num">${totalAdults}</div><div class="stat-label">Adultos</div></div>
-    <div class="stat-box"><div class="stat-num">${totalKids}</div><div class="stat-label">Niños</div></div>
-    <div class="stat-box"><div class="stat-num">${totalBus}</div><div class="stat-label">Con bus</div></div>
-  `;
-}
-
-function exportCSV() {
-  loadRSVPs().then(list => {
-    const header = 'Nombre,Adultos,Niños,Bebés,Transporte,Pre-boda,Alergias,Canciones,Mensaje,Fecha\n';
-    const rows = list.map(r => 
-      `"${r.name}","${r.adults}","${r.kids}","${r.babies||'no'}","${r.bus}","${r.preboda}","${r.allergies}","${r.songs||''}","${r.message}","${r.date}"`
-    ).join('\n');
-    const blob = new Blob(['\uFEFF' + header + rows], { type: 'text/csv;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a'); a.href = url;
-    a.download = 'rsvp_boda_nuria_salva.csv'; a.click();
-  });
+function openSheets() {
+  window.open('https://docs.google.com/spreadsheets/d/13dU75w_hZDnpDMJSRyT1tdgefxXKawza4Vd5AKtY2ic/edit', '_blank');
 }
 
 
