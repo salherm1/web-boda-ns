@@ -182,10 +182,28 @@
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--gold-light);
     display: flex;
+    align-items: center;
     justify-content: center;
     gap: 0;
-    padding: 0;
+    padding: 0 0.5rem;
   }
+
+  .nav-logo {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    padding: 0.4rem 0.25rem 0.4rem 0.5rem;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .nav-links::-webkit-scrollbar { display: none; }
 
   nav a {
     font-size: 0.72rem;
@@ -821,14 +839,10 @@
 
   /* ─── MOBILE ─── */
   @media (max-width: 600px) {
-    /* Nav: scrollable horizontal on mobile */
-    nav {
-      overflow-x: auto;
-      justify-content: flex-start;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-    }
-    nav::-webkit-scrollbar { display: none; }
+    /* Nav: logo fixed left, links scroll on mobile */
+    nav { padding: 0 0.25rem 0 0.5rem; }
+    .nav-links { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .nav-links::-webkit-scrollbar { display: none; }
     nav a { padding: 0.9rem 0.7rem; font-size: 0.65rem; white-space: nowrap; }
 
     /* Lang bar: smaller on mobile */
@@ -921,10 +935,7 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#preboda" data-es="Pre-boda" data-en="Pre-wedding">Pre-boda</a>
-  <a href="#program" data-es="Programa" data-en="Program">Programa</a>
-  <a href="#rsvp-section" data-es="Confirmar" data-en="RSVP">Confirmar</a>
-  <a href="#hero" style="display:flex;align-items:center;padding:0.5rem 1rem;">
+  <a href="#hero" class="nav-logo">
     <svg class="logo-nav" viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
       <g transform="translate(130, 130)">
         <line x1="0" y1="-92" x2="0" y2="-72" stroke="#4a5e3a" stroke-width="2" stroke-linecap="round"/>
@@ -942,10 +953,15 @@
       </g>
     </svg>
   </a>
-  <a href="#hotels" data-es="Alojamiento" data-en="Hotels">Alojamiento</a>
-  <a href="#restaurants" data-es="Gastronomía" data-en="Food">Gastronomía</a>
-  <a href="#que-hacer" data-es="Valencia" data-en="Valencia" data-va="València">Valencia</a>
-  <a href="#faq" data-es="FAQ" data-en="FAQ" data-va="FAQ">FAQ</a>
+  <div class="nav-links">
+    <a href="#preboda" data-es="Pre-boda" data-en="Pre-wedding">Pre-boda</a>
+    <a href="#program" data-es="Programa" data-en="Program">Programa</a>
+    <a href="#rsvp-section" data-es="Confirmar" data-en="RSVP">Confirmar</a>
+    <a href="#hotels" data-es="Alojamiento" data-en="Hotels">Alojamiento</a>
+    <a href="#restaurants" data-es="Gastronomía" data-en="Food">Gastronomía</a>
+    <a href="#que-hacer" data-es="Valencia" data-en="Valencia" data-va="València">Valencia</a>
+    <a href="#faq" data-es="FAQ" data-en="FAQ" data-va="FAQ">FAQ</a>
+  </div>
 </nav>
 
 <!-- INTRO -->
