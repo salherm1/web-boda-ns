@@ -358,20 +358,29 @@
 
   /* ─── PHOTO STRIP ─── */
   .photo-strip {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    width: 100%;
     height: 420px;
     overflow: hidden;
+    position: relative;
   }
 
   .photo-strip div {
+    width: 100%;
+    height: 100%;
     background-size: cover;
     background-position: center;
-    transition: flex 0.5s;
+    background-attachment: fixed;
+    transform: scale(1.05);
+    transition: transform 8s ease;
+  }
+
+  .photo-strip:hover div {
+    transform: scale(1.08);
   }
 
   @media (max-width: 700px) {
-    .photo-strip { grid-template-columns: 1fr 1fr; height: 300px; }
+    .photo-strip { height: 300px; }
+    .photo-strip div { background-attachment: scroll; }
   }
 
   /* ─── RSVP ─── */
@@ -940,6 +949,7 @@
     </div>
     <h1 class="hero-names">Núria<br><em>&amp;</em><br>Salva</h1>
     <p class="hero-date">12 · 12 · 2026 — Valencia</p>
+    <p style="font-family:'Jost',sans-serif;font-size:0.7rem;letter-spacing:0.35em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-top:1.2rem;" data-es="Invitación formal" data-en="Formal invitation" data-va="Invitació formal">Invitación formal</p>
   </div>
   <div class="hero-scroll">
     <span data-es="descubrir" data-en="discover">descubrir</span>
@@ -990,10 +1000,10 @@
     Después de un largo noviazgo y muchas <em style="font-style:italic;color:var(--gold);">aventuras compartidas</em>...
   </h2>
   <p style="font-size:1.1rem;line-height:1.9;color:var(--mid);max-width:660px;margin:0 auto 1.5rem;"
-     data-es="...nos dimos el sí quiero en Maldivas, rodeados de océano y de esa luz que lo cambia todo. Fue nuestro momento, íntimo y perfecto. Pero una celebración así no estaría completa sin las personas que más queremos — así que ahora os toca a vosotros: nos gustaría festejar nuestra unión con todos vosotros en Valencia, el 12 de diciembre de 2026."
-     data-en="...we said yes to each other in the Maldives, surrounded by ocean and that kind of light that changes everything. It was our moment — intimate and perfect. But a love like this deserves to be celebrated with the people who matter most. So now it's your turn: we'd love to celebrate our union with all of you in Valencia, on 12 December 2026."
-     data-va="...ens vam dir que sí a les Maldives, envoltats d'oceà i d'aquella llum que ho canvia tot. Va ser el nostre moment, íntim i perfecte. Però una celebració així no estaria completa sense les persones que més estimem — per tant ara us toca a vosaltres: ens agradaria festejar la nostra unió amb tots vosaltres a València, el 12 de desembre de 2026.">
-    ...nos dimos el sí quiero en Maldivas, rodeados de océano y de esa luz que lo cambia todo. Fue nuestro momento, íntimo y perfecto. Pero una celebración así no estaría completa sin las personas que más queremos — así que ahora os toca a vosotros: nos gustaría festejar nuestra unión con todos vosotros en Valencia, el 12 de diciembre de 2026.
+     data-es="...nos dimos el sí quiero en nuestro último viaje. Pero una celebración así no estaría completa sin las personas que más queremos — así que ahora os toca a vosotros: nos gustaría festejar nuestra unión con todos vosotros en Valencia, el 12 de diciembre de 2026."
+     data-en="...we said yes to each other on our last trip away. But a love like this deserves to be celebrated with the people who matter most. So now it's your turn: we'd love to celebrate our union with all of you in Valencia, on 12 December 2026."
+     data-va="...ens vam dir que sí en el nostre últim viatge. Però una celebració així no estaria completa sense les persones que més estimem — per tant ara us toca a vosaltres: ens agradaria festejar la nostra unió amb tots vosaltres a València, el 12 de desembre de 2026.">
+    ...nos dimos el sí quiero en nuestro último viaje. Pero una celebración así no estaría completa sin las personas que más queremos — así que ahora os toca a vosotros: nos gustaría festejar nuestra unión con todos vosotros en Valencia, el 12 de diciembre de 2026.
   </p>
   <div style="width:40px;height:1px;background:var(--gold);margin:0 auto;opacity:0.6;"></div>
 </section>
@@ -1042,7 +1052,7 @@
       El viernes por la tarde os abrimos las puertas a los que tengáis ganas de un ratito juntos antes del gran día. Es algo completamente informal y, por supuesto, sin ninguna obligación — entendemos perfectamente que el sábado será una jornada larga y que cada uno tiene sus ritmos. Para los que os apetezca, será una ocasión tranquila para encontrarnos, instalarse con calma y que familia y amigos se vayan conociendo.
     </p>
     <div class="preboda-banner fade-in" style="background:rgba(255,255,255,0.08);border:1px solid rgba(232,213,176,0.3);border-radius:2px;padding:2rem 2.5rem;display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
-      <div style="font-size:2.5rem;">🌿</div>
+      <div style="font-size:2.5rem;">🥂</div>
       <div>
         <div class="preboda-title"
              data-es="Viernes 11 de diciembre · 19:00 – 21:00h"
@@ -1064,18 +1074,19 @@
   <span class="section-label" data-es="Sábado 12 de diciembre · El gran día" data-en="Saturday 12 December · The big day">Sábado 12 de diciembre · El gran día</span>
   <h2 class="section-title" data-es="<em>Programa</em> de la boda" data-en="Wedding <em>Program</em>"><em>Programa</em> de la boda</h2>
   <div class="divider"></div>
-  <p class="lead" data-es="Todo comienza en los jardines del Hotel Las Arenas, frente al Mediterráneo." 
+  <p class="lead" data-es="Todo comienza en los jardines del <a href='https://www.google.com/maps?cid=11133854583224594705' target='_blank' style='color:var(--gold);text-decoration:underline;'>Hotel Las Arenas</a>, frente al Mediterráneo." 
      data-en="Everything begins in the gardens of Hotel Las Arenas, facing the Mediterranean.">
-    Todo comienza en los jardines del Hotel Las Arenas, frente al Mediterráneo.
+    Todo comienza en los jardines del <a href="https://www.google.com/maps?cid=11133854583224594705" target="_blank" style="color:var(--gold);text-decoration:underline;">Hotel Las Arenas</a>, frente al Mediterráneo.
   </p>
 
   <div class="program-grid mt-2">
     <div class="program-card fade-in">
       <div class="program-time">12:00</div>
-      <div class="program-name" data-es="🌿 Ceremonia Civil · Exterior" data-en="🌿 Civil Ceremony · Outdoor">🌿 Ceremonia Civil · Exterior</div>
-      <div class="program-desc" data-es="En los jardines del Hotel Las Arenas, junto al Mediterráneo. Un momento único e íntimo al aire libre."
-           data-en="In the Hotel Las Arenas gardens, right by the Mediterranean. An intimate and unique outdoor moment.">
-        En los jardines del Hotel Las Arenas, junto al Mediterráneo. Un momento único e íntimo al aire libre.
+      <div class="program-name" data-es="💍 Ceremonia Civil · Exterior" data-en="💍 Civil Ceremony · Outdoor">💍 Ceremonia Civil · Exterior</div>
+      <div class="program-desc" data-es="En los jardines del Hotel Las Arenas, junto al Mediterráneo. El momento en el que nos acompañaréis al decir que &quot;sí quiero&quot;."
+           data-en="In the Hotel Las Arenas gardens, right by the Mediterranean. The moment you'll be with us as we say &quot;I do&quot;."
+           data-va="Als jardins de l'Hotel Las Arenas, junt al Mediterrani. El moment en què ens acompanyareu a dir que &quot;sí vull&quot;.">
+        En los jardines del Hotel Las Arenas, junto al Mediterráneo. El momento en el que nos acompañaréis al decir que "sí quiero".
       </div>
     </div>
     <div class="program-card fade-in">
@@ -1088,10 +1099,10 @@
     </div>
     <div class="program-card fade-in">
       <div class="program-time">~15:00</div>
-      <div class="program-name" data-es="🍽️ Banquete — Salón Diana · Interior" data-en="🍽️ Banquet — Diana Hall · Indoor">🍽️ Banquete — Salón Diana · Interior</div>
-      <div class="program-desc" data-es="En el elegante Salón Diana del hotel. Una experiencia gastronómica excepcional con los mejores productos de la tierra valenciana."
-           data-en="In the hotel's elegant Diana Hall. An exceptional gastronomic experience celebrating the finest Valencian produce.">
-        En el elegante Salón Diana del hotel. Una experiencia gastronómica excepcional con los mejores productos de la tierra valenciana.
+      <div class="program-name" data-es="🍽️ Banquete · Interior" data-en="🍽️ Banquet · Indoor">🍽️ Banquete · Interior</div>
+      <div class="program-desc" data-es="En el elegante salón del hotel. Una experiencia gastronómica excepcional con los mejores productos de la tierra valenciana."
+           data-en="In the hotel's elegant ballroom. An exceptional gastronomic experience celebrating the finest Valencian produce.">
+        En el elegante salón del hotel. Una experiencia gastronómica excepcional con los mejores productos de la tierra valenciana.
       </div>
     </div>
     <div class="program-card fade-in">
@@ -1126,12 +1137,9 @@
 
 </section>
 
-<!-- PHOTO STRIP 2 — Hotel Las Arenas + Valencia -->
+<!-- PHOTO STRIP 2 — Hotel Las Arenas -->
 <div class="photo-strip">
-  <div style="background-image:url('https://cdn.jsdelivr.net/gh/salherm1/imagenes@d8885bff8aaac23da23c5d56256f8445faf2eefc/FACHADAS-Y-JARDINES-3-1.jpg');" title="Hotel Las Arenas fachada y jardines"></div>
-  <div style="background-image:url('https://cdn.jsdelivr.net/gh/salherm1/imagenes@d8885bff8aaac23da23c5d56256f8445faf2eefc/header-weddings.jpg');" title="Bodas en Hotel Las Arenas"></div>
-  <div style="background-image:url('https://cdn.jsdelivr.net/gh/salherm1/imagenes@d8885bff8aaac23da23c5d56256f8445faf2eefc/istockphoto-964226964-612x612.jpg');" title="Boda elegante"></div>
-  <div style="background-image:url('https://cdn.jsdelivr.net/gh/salherm1/imagenes@d8885bff8aaac23da23c5d56256f8445faf2eefc/valencia-1049389_1280.jpg');" title="Valencia"></div>
+  <div style="background-image:url('https://cdn.jsdelivr.net/gh/salherm1/imagenes@1415b9987273f13f52faec5365cc06d1f135e01c/FACHADA-DIA.jpg');" title="Hotel Las Arenas fachada y jardines"></div>
 </div>
 
 <!-- RSVP -->
@@ -1149,7 +1157,7 @@
     <div id="rsvp-form">
       <div class="form-group">
         <label data-es="Tu nombre completo *" data-en="Your full name *">Tu nombre completo *</label>
-        <input type="text" id="rsvp-name" placeholder="Nombre y apellidos" required>
+        <input type="text" id="rsvp-name" data-es-placeholder="Nombre y apellidos" data-en-placeholder="Full name" data-va-placeholder="Nom i cognoms" placeholder="Nombre y apellidos" required>
       </div>
 
       <div class="form-row">
@@ -1192,7 +1200,7 @@
       </div>
 
       <div class="form-group">
-        <label data-es="¿Necesitarás transporte para llegar?" data-en="Will you need transport to get there?">¿Necesitarás transporte para llegar?</label>
+        <label data-es="¿Necesitarás transporte para llegar / regresar?" data-en="Will you need transport to get there / back?">¿Necesitarás transporte para llegar / regresar?</label>
         <div class="radio-group">
           <label class="radio-opt">
             <input type="radio" name="bus" value="carcaixent" id="bus-carcaixent">
@@ -1208,9 +1216,9 @@
           </label>
         </div>
         <p style="font-size:0.78rem;color:var(--light-text);margin-top:0.5rem;" 
-           data-es="Organizaremos transporte desde Carcaixent y desde Castelló de la Ribera para los que lo necesiten. Os confirmamos los detalles más adelante."
+           data-es="Organizaremos transporte desde Carcaixent y desde Castelló de la Ribera para los que lo necesiten, tanto para ir como para regresar. Os confirmamos los detalles más adelante."
            data-en="We'll arrange transport from Carcaixent and Castelló de la Ribera for those who need it. We'll confirm the details closer to the time.">
-           Organizaremos transporte desde Carcaixent y desde Castelló de la Ribera para los que lo necesiten. Os confirmamos los detalles más adelante.
+           Organizaremos transporte desde Carcaixent y desde Castelló de la Ribera para los que lo necesiten, tanto para ir como para regresar. Os confirmamos los detalles más adelante.
         </p>
       </div>
 
@@ -1231,7 +1239,7 @@
       <div class="form-group">
         <label data-es="Alergias o intolerancias alimentarias" data-en="Food allergies or intolerances">Alergias o intolerancias alimentarias</label>
         <textarea id="rsvp-allergies" rows="3" 
-          placeholder="Escribe aquí si tienes alguna alergia o intolerancia (gluten, lactosa, marisco, frutos secos...)"></textarea>
+          data-es-placeholder="Escribe aquí si tienes alguna alergia o intolerancia (gluten, lactosa, marisco, frutos secos...)" data-en-placeholder="List any allergies or intolerances here (gluten, lactose, shellfish, nuts...)" data-va-placeholder="Escriu ací si tens alguna al·lèrgia o intolerància (gluten, lactosa, marisc, fruits secs...)" placeholder="Escribe aquí si tienes alguna alergia o intolerancia (gluten, lactosa, marisco, frutos secos...)"></textarea>
       </div>
 
       <div class="form-group">
@@ -1239,13 +1247,38 @@
         <textarea id="rsvp-songs" rows="2" 
           data-es-placeholder="Cuéntanos qué canciones te gustaría que sonaran esa noche..."
           data-en-placeholder="Tell us which songs you'd love to hear that night..."
+          data-va-placeholder="Conta'ns quines cançons t'agradaria que sonessin aquella nit..."
           placeholder="Cuéntanos qué canciones te gustaría que sonaran esa noche..."></textarea>
       </div>
 
       <div class="form-group">
         <label data-es="Mensaje para los novios (opcional)" data-en="Message for the couple (optional)">Mensaje para los novios (opcional)</label>
-        <textarea id="rsvp-msg" rows="4" placeholder="¡Con mucho amor!"></textarea>
+        <textarea id="rsvp-msg" rows="4" data-es-placeholder="¡Con mucho amor!" data-en-placeholder="With all our love!" data-va-placeholder="Amb molt d'amor!" placeholder="¡Con mucho amor!"></textarea>
       </div>
+
+      <details style="margin-bottom:1.5rem;border:1px solid var(--gold-light);border-radius:2px;padding:1rem 1.25rem;">
+        <summary style="cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--dark);"
+                data-es="💝 Información para el regalo" data-en="💝 Gift information" data-va="💝 Informació per al regal">
+            💝 Información para el regalo
+          </span>
+          <span style="color:var(--gold);font-size:1.2rem;flex-shrink:0;display:inline-block;-webkit-transition:transform 0.2s;transition:transform 0.2s;">+</span>
+        </summary>
+        <div style="margin-top:1rem;">
+          <p style="font-size:0.85rem;line-height:1.8;color:var(--mid);margin-bottom:1rem;"
+             data-es="Vuestra presencia es el mejor regalo. Si aun así queréis hacernos un detalle, podéis hacer una transferencia o cualquier otro medio también nos vale 😊"
+             data-en="Your presence is the best gift. But if you'd like to give us something, a bank transfer works great — or any other means 😊"
+             data-va="La vostra presència és el millor regal. Si tot i així voleu fer-nos un detall, una transferència o qualsevol altre mitjà ens val 😊">
+            Vuestra presencia es el mejor regalo. Si aun así queréis hacernos un detalle, podéis hacer una transferencia o cualquier otro medio también nos vale 😊
+          </p>
+          <div style="background:var(--warm);border:1px solid var(--gold-light);border-radius:2px;padding:1rem 1.5rem;display:inline-block;">
+            <p style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--light-text);margin-bottom:0.4rem;"
+               data-es="Transferencia bancaria" data-en="Bank transfer" data-va="Transferència bancària">Transferencia bancaria</p>
+            <p style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:300;color:var(--dark);margin-bottom:0.25rem;">Salva / Núria</p>
+            <p style="font-size:0.88rem;color:var(--mid);letter-spacing:0.06em;">DE22 1001 1001 2827 7992 90</p>
+          </div>
+        </div>
+      </details>
 
       <button class="btn-primary" id="rsvp-submit" onclick="submitRSVP()">
         <span data-es="Confirmar asistencia" data-en="Confirm attendance">Confirmar asistencia</span>
@@ -1255,11 +1288,18 @@
 
     <div class="form-success" id="rsvp-success">
       <div style="font-size:3rem;margin-bottom:1rem;">💌</div>
-      <h3 data-es="¡Gracias!" data-en="Thank you!">¡Gracias!</h3>
-      <p class="lead" style="margin:0 auto;" 
+      <h3 data-es="¡Gracias!" data-en="Thank you!" data-va="Gràcies!">¡Gracias!</h3>
+      <p class="lead" style="margin:0 auto;"
          data-es="Hemos recibido tu confirmación. ¡Nos vemos en diciembre!"
-         data-en="We've received your confirmation. See you in December!">
+         data-en="We've received your confirmation. See you in December!"
+         data-va="Hem rebut la teua confirmació. Ens veiem al desembre!">
         Hemos recibido tu confirmación. ¡Nos vemos en diciembre!
+      </p>
+      <p style="font-size:0.85rem;color:var(--light-text);margin-top:1rem;line-height:1.7;max-width:480px;margin-left:auto;margin-right:auto;"
+         data-es="Si en algún momento cambia algo — número de asistentes, alergias u otras circunstancias — por favor avísanos lo antes posible para que podamos organizarlo todo bien. ¡Muchas gracias!"
+         data-en="If anything changes — number of guests, allergies or any other circumstances — please let us know as soon as possible so we can plan accordingly. Many thanks!"
+         data-va="Si en algun moment canvia alguna cosa — nombre d'assistents, al·lèrgies o altres circumstàncies — si us plau avisa'ns el més aviat possible perquè puguem organitzar-ho tot bé. Moltes gràcies!">
+        Si en algún momento cambia algo — número de asistentes, alergias u otras circunstancias — por favor avísanos lo antes posible para que podamos organizarlo todo bien. ¡Muchas gracias!
       </p>
     </div>
   </div>
@@ -1280,9 +1320,9 @@
       <div class="hotel-badge" data-es="Lugar de la boda · Precio especial" data-en="Wedding venue · Special rate">Lugar de la boda · Precio especial</div>
       <div class="hotel-name">Hotel Las Arenas</div>
       <div class="hotel-stars">★★★★★ GL</div>
-      <div class="hotel-desc" data-es="El propio hotel de la boda. Alojarse aquí es la opción más cómoda — ¡despertaréis a pie de playa! Los invitados tienen acceso a una tarifa especial. Contactad con nosotros para el código de descuento."
-           data-en="The wedding hotel itself. Staying here is the most convenient option — you'll wake up steps from the beach! Guests have access to a special rate. Contact us for the discount code.">
-        El propio hotel de la boda. Alojarse aquí es la opción más cómoda — ¡despertaréis a pie de playa! Los invitados tienen acceso a una tarifa especial. Contactad con nosotros para el código de descuento.
+      <div class="hotel-desc" data-es="El propio hotel de la boda. Alojarse aquí es la opción más cómoda — ¡despertaréis a pie de playa! Al contactar con el hotel, indicad que venís a la boda de Núria &amp; Salva para acceder a la tarifa especial."
+           data-en="The wedding hotel itself. Staying here is the most convenient option — you'll wake up steps from the beach! When contacting the hotel, mention that you're attending Núria &amp; Salva's wedding to access the special rate.">
+        El propio hotel de la boda. Alojarse aquí es la opción más cómoda — ¡despertaréis a pie de playa! Al contactar con el hotel, indicad que venís a la boda de Núria &amp; Salva para acceder a la tarifa especial.
       </div>
       <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Las+Arenas+Balneario+Resort+Valencia" target="_blank" class="map-link">📍 <span data-es="Ver en Google Maps" data-en="View on Maps">Ver en Google Maps</span></a>
     </div>
@@ -1307,18 +1347,14 @@
       <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Balandret+Valencia+playa" target="_blank" class="map-link">📍 <span data-es="Ver en Google Maps" data-en="View on Maps">Ver en Google Maps</span></a>
     </div>
 
-    <div class="hotel-card">
-      <div class="hotel-name">AC Hotel Valencia by Marriott</div>
-      <div class="hotel-stars">★★★★</div>
-      <div class="hotel-desc" data-es="Hotel moderno y bien ubicado en el centro de Valencia, a poca distancia del Palau de la Música y del metro. Estilo contemporáneo, habitaciones amplias y todo el respaldo de la cadena Marriott. Una opción fiable y cómoda para los invitados que prefieren el centro de la ciudad."
-           data-en="Modern, well-located hotel in central Valencia, a short distance from the Palau de la Música and the metro. Contemporary style, spacious rooms and the full backing of the Marriott brand. A reliable and comfortable choice for guests who prefer to stay in the city centre.">
-        Hotel moderno y bien ubicado en el centro de Valencia, a poca distancia del Palau de la Música y del metro. Estilo contemporáneo, habitaciones amplias y todo el respaldo de la cadena Marriott. Una opción fiable y cómoda para los invitados que prefieren el centro de la ciudad.
-      </div>
-      <a href="https://www.google.com/maps/search/?api=1&query=AC+Hotel+Valencia+by+Marriott" target="_blank" class="map-link">📍 <span data-es="Ver en Google Maps" data-en="View on Maps">Ver en Google Maps</span></a>
-    </div>
-
-
   </div>
+
+  <p style="text-align:center;font-size:0.9rem;color:var(--light-text);margin-top:2.5rem;line-height:1.8;"
+     data-es="¿Buscas más opciones o consejo sobre dónde alojarte? ¡Escríbenos y te ayudamos a encontrar la mejor zona para ti!"
+     data-en="Looking for more options or advice on where to stay? Drop us a message and we'll help you find the best area for you!"
+     data-va="Busques més opcions o consell sobre on allotjar-te? Escriu-nos i t'ajudem a trobar la millor zona per a tu!">
+    ¿Buscas más opciones o consejo sobre dónde alojarte? ¡Escríbenos y te ayudamos a encontrar la mejor zona para ti!
+  </p>
 </section>
 
 <!-- RESTAURANTS -->
@@ -1657,10 +1693,27 @@
           <span style="color:var(--gold);font-size:1.4rem;flex-shrink:0;">+</span>
         </summary>
         <p style="margin-top:1rem;font-size:0.9rem;line-height:1.8;color:var(--mid);"
-           data-es="El propio Hotel Las Arenas dispone de salón de peluquería y servicios de estética. Si lo necesitas, te recomendamos reservar con antelación directamente con el hotel. También hay salones de peluquería y maquillaje profesional en los alrededores. Si necesitas orientación, escríbenos y te ayudamos a encontrar la mejor opción."
-           data-en="Hotel Las Arenas itself has a hair salon and beauty services on site. If you need it, we recommend booking in advance directly with the hotel. There are also professional hair and make-up salons nearby. If you need guidance, just message us and we'll help you find the best option."
+           data-es="El propio Hotel Las Arenas dispone de salón de peluquería y servicios de estética. Además, tenemos varios contactos de profesionales de confianza en la zona — si lo necesitas, pregúntanos y te orientamos sin problema. ¡Queremos que estéis perfectos ese día!"
+           data-en="Hotel Las Arenas itself has a hair salon and beauty services on site. We also have several trusted professional contacts in the area — just ask us and we'll point you in the right direction. We want everyone looking their best!"
            data-va="El propi Hotel Las Arenas disposa de saló de perruqueria i serveis d'estètica. Si ho necessites, et recomanem reservar amb antelació directament amb l'hotel. També hi ha salons de perruqueria i maquillatge professional als voltants. Si necessites orientació, escriu-nos i t'ajudem a trobar la millor opció.">
-          El propio Hotel Las Arenas dispone de salón de peluquería y servicios de estética. Si lo necesitas, te recomendamos reservar con antelación directamente con el hotel. También hay salones de peluquería y maquillaje profesional en los alrededores. Si necesitas orientación, escríbenos y te ayudamos a encontrar la mejor opción.
+          El propio Hotel Las Arenas dispone de salón de peluquería y servicios de estética. Además, tenemos varios contactos de profesionales de confianza en la zona — si lo necesitas, pregúntanos y te orientamos sin problema. ¡Queremos que estéis perfectos ese día!
+        </p>
+      </details>
+
+      <!-- Q2b — Participaciones en la ceremonia -->
+      <details style="border-bottom:1px solid var(--gold-light);padding:1.5rem 0;">
+        <summary style="cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;">
+          <span style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;color:var(--dark);"
+                data-es="¿Puedo participar en la ceremonia?" data-en="Can I take part in the ceremony?" data-va="Puc participar en la cerimònia?">
+            ¿Puedo participar en la ceremonia?
+          </span>
+          <span style="color:var(--gold);font-size:1.4rem;flex-shrink:0;display:inline-block;-webkit-transition:transform 0.2s;transition:transform 0.2s;">+</span>
+        </summary>
+        <p style="margin-top:1rem;font-size:0.9rem;line-height:1.8;color:var(--mid);"
+           data-es="¡Nos haría enormemente felices contar con participaciones de amigos y familiares en la ceremonia! Si tienes algo que quieres decir, leer o compartir en ese momento tan especial, escríbenos y lo hablamos. También puedes contactar directamente con nuestro ceremoniante en: <a href='mailto:ceremoniante@email.com' style='color:var(--gold);'>ceremoniante@email.com</a>"
+           data-en="We would absolutely love to have friends and family take part in the ceremony! If you have something you'd like to say, read or share on that special day, just reach out. You can also contact our officiant directly at: <a href='mailto:ceremoniante@email.com' style='color:var(--gold);'>ceremoniante@email.com</a>"
+           data-va="Ens faria enormement feliços comptar amb participacions d'amics i familiars a la cerimònia! Si tens alguna cosa que vols dir, llegir o compartir en aquell moment tan especial, escriu-nos i ho parlem. També pots contactar directament amb el nostre cerimoniant a: <a href='mailto:ceremoniante@email.com' style='color:var(--gold);'>ceremoniante@email.com</a>">
+          ¡Nos haría enormemente felices contar con participaciones de amigos y familiares en la ceremonia! Si tienes algo que quieres decir, leer o compartir en ese momento tan especial, escríbenos y lo hablamos. También puedes contactar directamente con nuestro ceremoniante en: <a href="mailto:ceremoniante@email.com" style="color:var(--gold);">ceremoniante@email.com</a>
         </p>
       </details>
 
@@ -1708,10 +1761,10 @@
           <span style="color:var(--gold);font-size:1.4rem;flex-shrink:0;">+</span>
         </summary>
         <p style="margin-top:1rem;font-size:0.9rem;line-height:1.8;color:var(--mid);"
-           data-es="Sí, el Hotel Las Arenas dispone de aparcamiento privado de pago en las instalaciones. También hay opciones de aparcamiento público en los alrededores. Si venís en coche, os recomendamos consultar disponibilidad con el hotel directamente."
-           data-en="Yes, Hotel Las Arenas has paid private parking on site. There are also public parking options nearby. If you're driving, we recommend checking availability with the hotel directly."
+           data-es="Sí, el Hotel Las Arenas dispone de aparcamiento. Los invitados que vengáis en coche el día de la boda podéis aparcar gratuitamente en el hotel — solo tenéis que contactarnos antes para que podamos gestionarlo. ¡No os preocupéis por el aparcamiento!"
+           data-en="Yes, Hotel Las Arenas has parking on site. Guests driving to the wedding can park for free at the hotel — just get in touch with us beforehand so we can arrange it. No need to worry about parking!"
            data-va="Sí, l'Hotel Las Arenas disposa d'aparcament privat de pagament a les instal·lacions. També hi ha opcions d'aparcament públic als voltants. Si veniu en cotxe, us recomanem consultar la disponibilitat amb l'hotel directament.">
-          Sí, el Hotel Las Arenas dispone de aparcamiento privado de pago en las instalaciones. También hay opciones de aparcamiento público en los alrededores. Si venís en coche, os recomendamos consultar disponibilidad con el hotel directamente.
+          Sí, el Hotel Las Arenas dispone de aparcamiento. Los invitados que vengáis en coche el día de la boda podéis aparcar gratuitamente en el hotel — solo tenéis que contactarnos antes para que podamos gestionarlo. ¡No os preocupéis por el aparcamiento!
         </p>
       </details>
 
@@ -1725,10 +1778,10 @@
           <span style="color:var(--gold);font-size:1.4rem;flex-shrink:0;">+</span>
         </summary>
         <p style="margin-top:1rem;font-size:0.9rem;line-height:1.8;color:var(--mid);"
-           data-es="¡Por supuesto! Los niños son más que bienvenidos. Indicadnos en el formulario de confirmación cuántos niños y bebés vendréis, para que podamos tenerlo en cuenta en la organización. Si tenéis alguna necesidad especial para los más pequeños, no dudéis en escribirnos."
-           data-en="Of course! Children are more than welcome. Let us know in the RSVP form how many children and babies will be joining you, so we can take it into account when planning. If you have any special needs for the little ones, don't hesitate to get in touch."
+           data-es="¡Por supuesto! Los niños son más que bienvenidos — y habrá animación para ellos durante la celebración. Indicadnos en el formulario cuántos niños y bebés vendréis para que podamos organizarlo todo bien. Si tenéis alguna necesidad especial, no dudéis en escribirnos 🎉"
+           data-en="Of course! Children are more than welcome — and there will be entertainment for them during the celebration. Let us know in the RSVP form how many children and babies will be joining you so we can plan accordingly. If you have any special needs, don't hesitate to get in touch 🎉"
            data-va="Per descomptat! Els xiquets són més que benvinguts. Indiqueu-nos en el formulari de confirmació quants xiquets i bebès vindreu, perquè puguem tenir-ho en compte en l'organització. Si teniu alguna necessitat especial per als més menuts, no dubteu a escriure'ns.">
-          ¡Por supuesto! Los niños son más que bienvenidos. Indicadnos en el formulario de confirmación cuántos niños y bebés vendréis, para que podamos tenerlo en cuenta en la organización. Si tenéis alguna necesidad especial para los más pequeños, no dudéis en escribirnos.
+          ¡Por supuesto! Los niños son más que bienvenidos — y habrá animación para ellos durante la celebración. Indicadnos en el formulario cuántos niños y bebés vendréis para que podamos organizarlo todo bien. Si tenéis alguna necesidad especial, no dudéis en escribirnos 🎉
         </p>
       </details>
 
@@ -1742,16 +1795,16 @@
           <span style="color:var(--gold);font-size:1.4rem;flex-shrink:0;">+</span>
         </summary>
         <p style="margin-top:1rem;font-size:0.9rem;line-height:1.8;color:var(--mid);"
-           data-es="Vuestra presencia es el mejor regalo que podemos recibir, de verdad. Si aun así queréis hacernos un detalle, podéis hacer una transferencia a la siguiente cuenta (número provisional — actualizaremos pronto):"
-           data-en="Your presence is truly the greatest gift we could receive. But if you'd still like to give us something, you're welcome to make a transfer to the account below (provisional number — we'll update it soon):"
-           data-va="La vostra presència és el millor regal que podem rebre, de debò. Si tot i així voleu fer-nos un detall, podeu fer una transferència al compte següent (número provisional — actualitzarem prompte):">
-          Vuestra presencia es el mejor regalo que podemos recibir, de verdad. Si aun así queréis hacernos un detalle, podéis hacer una transferencia a la siguiente cuenta (número provisional — actualizaremos pronto):
+           data-es="Vuestra presencia es el mejor regalo que podemos recibir, de verdad. Si aun así queréis hacernos un detalle, podéis hacer una transferencia a la siguiente cuenta, o cualquier otro medio también nos vale 😊"
+           data-en="Your presence is truly the greatest gift we could receive. But if you'd still like to give us something, you're welcome to make a transfer to the account below — any other means works too 😊"
+           data-va="La vostra presència és el millor regal que podem rebre, de debò. Si tot i així voleu fer-nos un detall, podeu fer una transferència al compte següent, o qualsevol altre mitjà també ens val 😊">
+          Vuestra presencia es el mejor regalo que podemos recibir, de verdad. Si aun así queréis hacernos un detalle, podéis hacer una transferencia a la siguiente cuenta, o cualquier otro medio también nos vale 😊
         </p>
         <div style="margin-top:1.25rem;background:var(--white);border:1px solid var(--gold-light);border-radius:2px;padding:1.25rem 1.75rem;display:inline-block;">
           <p style="font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--light-text);margin-bottom:0.5rem;"
              data-es="Transferencia bancaria" data-en="Bank transfer" data-va="Transferència bancària">Transferencia bancaria</p>
-          <p style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;color:var(--dark);margin-bottom:0.3rem;">Núria &amp; Salva</p>
-          <p style="font-size:0.9rem;color:var(--mid);letter-spacing:0.06em;">ES00 0000 0000 0000 0000 0000</p>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;color:var(--dark);margin-bottom:0.3rem;">Salva / Núria</p>
+          <p style="font-size:0.9rem;color:var(--mid);letter-spacing:0.06em;">DE22 1001 1001 2827 7992 90</p>
         </div>
       </details>
 
@@ -1766,24 +1819,69 @@
       <span>⚙︎</span>
       <span data-es="Acceso administración" data-en="Admin access" data-va="Accés administració">Acceso administración</span>
     </summary>
-    <div id="admin-section" style="max-width:900px;margin:2rem auto 0;">
+    <div id="admin-section" style="max-width:1200px;margin:2rem auto 0;">
       <div class="admin-inner">
+
+        <!-- LOGIN -->
         <div id="admin-login" class="admin-login">
-          <p class="lead" style="text-align:center;margin-bottom:1.5rem;"
-             data-es="Acceso restringido a los novios" data-en="Restricted access for the couple">Acceso restringido a los novios</p>
+          <p class="lead" style="text-align:center;margin-bottom:1.5rem;">Acceso restringido a los novios</p>
           <input type="password" id="admin-pw" placeholder="Contraseña" style="margin-bottom:1rem;" onkeydown="if(event.key==='Enter') adminLogin()">
-          <button class="btn-primary" onclick="adminLogin()" data-es="Entrar" data-en="Enter">Entrar</button>
-          <div id="admin-pw-error" class="alert alert-error" style="display:none;margin-top:1rem;"
-               data-es="Contraseña incorrecta" data-en="Wrong password">Contraseña incorrecta</div>
+          <button class="btn-primary" onclick="adminLogin()">Entrar</button>
+          <div id="admin-pw-error" class="alert alert-error" style="display:none;margin-top:1rem;">Contraseña incorrecta</div>
         </div>
-        <div id="admin-panel" style="display:none;text-align:center;padding:1.5rem 0;">
-          <p style="font-size:0.9rem;color:var(--mid);margin-bottom:1.5rem;line-height:1.7;">
-            Las respuestas se guardan directamente en Google Sheets.<br>
-            Haz clic para abrirlas:
-          </p>
-          <button class="btn-primary" style="width:auto;" onclick="openSheets()">
-            📊 Ver respuestas en Google Sheets
-          </button>
+
+        <!-- PANEL -->
+        <div id="admin-panel" style="display:none;">
+
+          <!-- Stats -->
+          <div class="admin-stats" id="admin-stats"></div>
+
+          <!-- Toolbar -->
+          <div style="display:flex;gap:0.75rem;flex-wrap:wrap;justify-content:flex-end;margin-bottom:1rem;">
+            <button class="btn-primary" style="width:auto;font-size:0.75rem;padding:0.6rem 1.2rem;" onclick="adminRefresh()">🔄 Actualizar</button>
+            <button class="btn-primary" style="width:auto;font-size:0.75rem;padding:0.6rem 1.2rem;background:var(--green);" onclick="exportExcel()">⬇️ Exportar Excel</button>
+          </div>
+
+          <!-- Table -->
+          <div style="overflow-x:auto;border:1px solid var(--gold-light);border-radius:2px;">
+            <table id="admin-table" style="width:100%;border-collapse:collapse;font-size:0.8rem;">
+              <thead>
+                <tr style="background:var(--dark);color:var(--gold-light);">
+                  <th style="padding:0.75rem 0.5rem;text-align:left;white-space:nowrap;">Fecha</th>
+                  <th style="padding:0.75rem 0.5rem;text-align:left;">Nombre</th>
+                  <th style="padding:0.75rem 0.5rem;">Adults</th>
+                  <th style="padding:0.75rem 0.5rem;">Niños</th>
+                  <th style="padding:0.75rem 0.5rem;">Bebés</th>
+                  <th style="padding:0.75rem 0.5rem;">Transporte</th>
+                  <th style="padding:0.75rem 0.5rem;">Pre-boda</th>
+                  <th style="padding:0.75rem 0.5rem;text-align:left;">Alergias</th>
+                  <th style="padding:0.75rem 0.5rem;text-align:left;">Canciones</th>
+                  <th style="padding:0.75rem 0.5rem;text-align:left;">Mensaje</th>
+                  <th style="padding:0.75rem 0.5rem;">Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="admin-tbody"></tbody>
+            </table>
+          </div>
+
+          <p id="admin-empty" style="display:none;text-align:center;color:var(--light-text);padding:2rem;font-style:italic;">Aún no hay confirmaciones.</p>
+          <p id="admin-loading" style="text-align:center;color:var(--light-text);padding:2rem;">Cargando...</p>
+
+          <!-- Config Supabase -->
+          <details style="margin-top:2rem;text-align:left;border:1px solid var(--gold-light);border-radius:2px;padding:1rem 1.5rem;">
+            <summary style="cursor:pointer;font-size:0.75rem;color:var(--light-text);letter-spacing:0.1em;text-transform:uppercase;">⚙ Configuración Supabase</summary>
+            <div style="margin-top:1rem;display:flex;flex-direction:column;gap:0.75rem;">
+              <label style="font-size:0.8rem;color:var(--mid);">URL del proyecto Supabase
+                <input id="sb-url" type="text" placeholder="https://xxxx.supabase.co" value="https://bmlkvcqatmgzrbiwzvaa.supabase.co" style="margin-top:0.25rem;font-size:0.8rem;font-family:monospace;">
+              </label>
+              <label style="font-size:0.8rem;color:var(--mid);">Anon Key
+                <input id="sb-key" type="text" placeholder="eyJ..." value="sb_publishable_lB40nGcKgISdjyv8YBCp8w__OKXuOpm" style="margin-top:0.25rem;font-size:0.8rem;font-family:monospace;">
+              </label>
+              <button class="btn-primary" style="width:auto;font-size:0.75rem;padding:0.6rem 1.2rem;" onclick="saveSupabaseConfig()">💾 Guardar configuración</button>
+              <p id="sb-config-msg" style="font-size:0.8rem;color:var(--green);display:none;">✅ Configuración guardada</p>
+            </div>
+          </details>
+
         </div>
       </div>
     </div>
@@ -1872,12 +1970,12 @@ const VA_TRANSLATIONS = {
   // Program
   'Sábado 12 de diciembre · El gran día': 'Dissabte 12 de desembre · El gran dia',
   'Todo comienza en los jardines del Hotel Las Arenas, frente al Mediterráneo.': 'Tot comença als jardins de l\'Hotel Las Arenas, davant del Mediterrani.',
-  '🌿 Ceremonia Civil · Exterior': '🌿 Cerimònia Civil · Exterior',
+  '💍 Ceremonia Civil · Exterior': '💍 Cerimònia Civil · Exterior',
   'En los jardines del Hotel Las Arenas, junto al Mediterráneo. Un momento único e íntimo al aire libre.': 'Als jardins de l\'Hotel Las Arenas, junt al Mediterrani. Un moment únic i íntim a l\'aire lliure.',
   '🥂 Cóctel de bienvenida · Exterior': '🥂 Còctel de benvinguda · Exterior',
   'En los jardines y terrazas del hotel, disfrutando del sol valenciano.': 'Als jardins i terrasses de l\'hotel, gaudint del sol valencià.',
-  '🍽️ Banquete — Salón Diana · Interior': '🍽️ Banquet — Saló Diana · Interior',
-  'En el elegante Salón Diana del hotel. Una experiencia gastronómica excepcional con los mejores productos de la tierra valenciana.': 'A l\'elegant Saló Diana de l\'hotel. Una experiència gastronòmica excepcional amb els millors productes de la terra valenciana.',
+  '🍽️ Banquete · Interior': '🍽️ Banquet — Saló Diana · Interior',
+  'En el elegante salón del hotel. Una experiencia gastronómica excepcional con los mejores productos de la tierra valenciana.': 'A l\'elegant Saló Diana de l\'hotel. Una experiència gastronòmica excepcional amb els millors productes de la terra valenciana.',
   '🎶 Fiesta & Barra libre': '🎶 Festa & Barra lliure',
   '¡Que empiece el baile! Barra libre a partir de las 17:00h — con horario mínimo hasta las 22:00h, aunque si la noche acompaña... ¡puede alargarse! Y no os preocupéis: os devolveremos a casa 🚌😊': 'Que comence el ball! Barra lliure a partir de les 17:00h — amb horari mínim fins a les 22:00h, però si la nit acompanya... pot allargar-se! I no us preocupeu: us tornarem a casa 🚌😊',
   // RSVP section
@@ -1891,11 +1989,11 @@ const VA_TRANSLATIONS = {
   'Sí, 1 bebé': 'Sí, 1 bebè',
   'Sí, 2 bebés': 'Sí, 2 bebès',
   'Sí, 3 o más': 'Sí, 3 o més',
-  '¿Necesitarás transporte para llegar?': 'Necessitaràs transport per a arribar?',
+  '¿Necesitarás transporte para llegar / regresar?': 'Necessitaràs transport per a arribar / tornar?',
   'Sí, desde Carcaixent': 'Sí, des de Carcaixent',
   'Sí, desde Castelló de la Ribera': 'Sí, des de Castelló de la Ribera',
   'No, me apañaré por mi cuenta': 'No, m\'ho apanyaré pel meu compte',
-  'Organizaremos transporte desde Carcaixent y desde Castelló de la Ribera para los que lo necesiten. Os confirmamos los detalles más adelante.': 'Organitzarem transport des de Carcaixent i des de Castelló de la Ribera per als que ho necessiten. Us confirmem els detalls més endavant.',
+  'Organizaremos transporte desde Carcaixent y desde Castelló de la Ribera para los que lo necesiten, tanto para ir como para regresar. Os confirmamos los detalles más adelante.': 'Organitzarem transport des de Carcaixent i des de Castelló de la Ribera per als que ho necessiten. Us confirmem els detalls més endavant.',
   '¿Vendréis también a la pre-boda (11 dic, 19–21h)?': 'Vindreu també a la pre-boda (11 des, 19–21h)?',
   'Sí, allí estaré': 'Sí, hi seré',
   'No podré ir': 'No podré anar',
@@ -1916,7 +2014,7 @@ const VA_TRANSLATIONS = {
   'Donde descansar': 'On descansar',
   'Valencia es una ciudad perfecta para visitar. Hemos seleccionado las mejores opciones cerca del hotel.': 'València és una ciutat perfecta per a visitar. Hem seleccionat les millors opcions prop de l\'hotel.',
   'Lugar de la boda · Precio especial': 'Lloc del casament · Preu especial',
-  'El propio hotel de la boda. Alojarse aquí es la opción más cómoda — ¡despertaréis a pie de playa! Los invitados tienen acceso a una tarifa especial. Contactad con nosotros para el código de descuento.': 'El propi hotel del casament. Allotjar-se ací és l\'opció més còmoda — despertareu a peu de platja! Els convidats tenen accés a una tarifa especial. Poseu-vos en contacte amb nosaltres per al codi de descompte.',
+  'El propio hotel de la boda. Alojarse aquí es la opción más cómoda — ¡despertaréis a pie de playa! Al contactar con el hotel, indicad que venís a la boda de Núria &amp; Salva para acceder a la tarifa especial.': 'El propi hotel del casament. Allotjar-se ací és l\'opció més còmoda — despertareu a peu de platja! Els convidats tenen accés a una tarifa especial. Poseu-vos en contacte amb nosaltres per al codi de descompte.',
   'Ver en Google Maps': 'Veure a Google Maps',
   'Ver en Maps': 'Veure a Maps',
   'A pocos metros del hotel Las Arenas, frente al mar. Habitaciones con vistas al Mediterráneo y muy buena relación calidad-precio.': 'A pocs metres de l\'hotel Las Arenas, davant del mar. Habitacions amb vistes al Mediterrani i molt bona relació qualitat-preu.',
@@ -2011,6 +2109,13 @@ function setLang(lang) {
     }
   });
 
+  // Translate placeholder-only fields (inputs/textareas with data-{lang}-placeholder)
+  document.querySelectorAll('[data-es-placeholder]').forEach(el => {
+    const ph = el.getAttribute('data-' + lang + '-placeholder')
+             || el.getAttribute('data-es-placeholder');
+    if (ph) el.placeholder = ph;
+  });
+
   // ai chat first message
   const firstMsg = document.querySelector('#ai-chat .chat-msg.ai');
   if (firstMsg) {
@@ -2075,15 +2180,57 @@ document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.placeholder = txt;
     else el.innerHTML = txt;
   });
+
+  // Translate placeholder-only fields
+  document.querySelectorAll('[data-es-placeholder]').forEach(el => {
+    const ph = el.getAttribute('data-' + currentLang + '-placeholder')
+             || el.getAttribute('data-es-placeholder');
+    if (ph) el.placeholder = ph;
+  });
+
   document.documentElement.lang = currentLang;
 })();
 
-// ─── RSVP STORAGE ───
-// ─── GOOGLE SHEETS CONFIG ───
-// Pega aquí la URL de tu Apps Script deployment después de publicarlo
-const GOOGLE_SCRIPT_URL = 'PENDIENTE_URL_APPS_SCRIPT';
+// ─── SUPABASE CONFIG ────────────────────────────────────────────────────────
+// Config stored in localStorage so it persists across sessions
+function getSupabaseConfig() {
+  return {
+    url: localStorage.getItem('sb_url') || 'https://bmlkvcqatmgzrbiwzvaa.supabase.co',
+    key: localStorage.getItem('sb_key') || 'sb_publishable_lB40nGcKgISdjyv8YBCp8w__OKXuOpm'
+  };
+}
+function saveSupabaseConfig() {
+  const url = document.getElementById('sb-url').value.trim().replace(/\/$/, '');
+  const key = document.getElementById('sb-key').value.trim();
+  localStorage.setItem('sb_url', url);
+  localStorage.setItem('sb_key', key);
+  const msg = document.getElementById('sb-config-msg');
+  msg.style.display = 'block';
+  setTimeout(() => msg.style.display = 'none', 3000);
+}
 
-// ─── RSVP ───
+async function sbFetch(path, method = 'GET', body = null, extraHeaders = {}) {
+  const { url, key } = getSupabaseConfig();
+  if (!url || !key) throw new Error('Supabase no configurado');
+  const res = await fetch(`${url}/rest/v1/${path}`, {
+    method,
+    headers: {
+      'apikey': key,
+      'Authorization': `Bearer ${key}`,
+      'Content-Type': 'application/json',
+      'Prefer': method === 'POST' ? 'return=representation' : 'return=representation',
+      ...extraHeaders
+    },
+    body: body ? JSON.stringify(body) : null
+  });
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error(err);
+  }
+  return method === 'DELETE' ? null : res.json();
+}
+
+// ─── RSVP ───────────────────────────────────────────────────────────────────
 async function submitRSVP() {
   const name = document.getElementById('rsvp-name').value.trim();
   if (!name) {
@@ -2091,8 +2238,9 @@ async function submitRSVP() {
     return;
   }
 
-  if (GOOGLE_SCRIPT_URL === 'PENDIENTE_URL_APPS_SCRIPT') {
-    showFeedback('⚠️ Falta configurar la URL del Apps Script.', 'error');
+  const { url, key } = getSupabaseConfig();
+  if (!url || !key) {
+    showFeedback('⚠️ El formulario no está configurado aún. Contacta con los novios directamente.', 'error');
     return;
   }
 
@@ -2101,25 +2249,20 @@ async function submitRSVP() {
   btn.innerHTML = '<span class="spinner"></span>' + (currentLang === 'es' ? 'Enviando...' : 'Enviant...');
 
   const entry = {
-    name,
-    adults:    document.getElementById('rsvp-adults').value,
-    kids:      document.getElementById('rsvp-kids').value,
-    babies:    document.querySelector('input[name="babies"]:checked')?.value || 'no',
-    bus:       document.querySelector('input[name="bus"]:checked')?.value || 'no',
+    nombre:    name,
+    adultos:   parseInt(document.getElementById('rsvp-adults').value) || 1,
+    ninos:     parseInt(document.getElementById('rsvp-kids').value) || 0,
+    bebes:     document.querySelector('input[name="babies"]:checked')?.value || 'no',
+    transporte: document.querySelector('input[name="bus"]:checked')?.value || 'no',
     preboda:   document.querySelector('input[name="preboda"]:checked')?.value || 'no',
-    allergies: document.getElementById('rsvp-allergies').value.trim(),
-    songs:     document.getElementById('rsvp-songs').value.trim(),
-    message:   document.getElementById('rsvp-msg').value.trim(),
+    alergias:  document.getElementById('rsvp-allergies').value.trim(),
+    canciones: document.getElementById('rsvp-songs').value.trim(),
+    mensaje:   document.getElementById('rsvp-msg').value.trim(),
+    fecha:     new Date().toISOString()
   };
 
   try {
-    const response = await fetch(GOOGLE_SCRIPT_URL, {
-      method: 'POST',
-      mode: 'no-cors', // Google Apps Script requiere no-cors
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(entry)
-    });
-    // no-cors no permite leer la respuesta, pero si no hay excepción es OK
+    await sbFetch('rsvp', 'POST', entry);
     document.getElementById('rsvp-form').style.display = 'none';
     document.getElementById('rsvp-success').style.display = 'block';
   } catch(e) {
@@ -2140,20 +2283,179 @@ function showFeedback(msg, type) {
   el.style.display = 'block';
 }
 
-// ─── ADMIN ───
-// El admin ahora abre directamente Google Sheets en una nueva pestaña
+// ─── ADMIN ───────────────────────────────────────────────────────────────────
 function adminLogin() {
   const pw = document.getElementById('admin-pw').value;
-  if (pw === 'sn2026') {
+  if (pw === 'amuntvcf') {
     document.getElementById('admin-login').style.display = 'none';
     document.getElementById('admin-panel').style.display = 'block';
+    // Pre-fill config inputs from localStorage
+    const { url, key } = getSupabaseConfig();
+    document.getElementById('sb-url').value = url;
+    document.getElementById('sb-key').value = key;
+    adminRefresh();
   } else {
     document.getElementById('admin-pw-error').style.display = 'block';
   }
 }
 
-function openSheets() {
-  window.open('https://docs.google.com/spreadsheets/d/13dU75w_hZDnpDMJSRyT1tdgefxXKawza4Vd5AKtY2ic/edit', '_blank');
+async function adminRefresh() {
+  const loading = document.getElementById('admin-loading');
+  const empty = document.getElementById('admin-empty');
+  const tbody = document.getElementById('admin-tbody');
+  const stats = document.getElementById('admin-stats');
+
+  loading.style.display = 'block';
+  empty.style.display = 'none';
+  tbody.innerHTML = '';
+  stats.innerHTML = '';
+
+  try {
+    const rows = await sbFetch('rsvp?order=fecha.asc&select=*');
+    loading.style.display = 'none';
+
+    if (!rows || rows.length === 0) {
+      empty.style.display = 'block';
+      return;
+    }
+
+    // Stats
+    const totalAdults = rows.reduce((s, r) => s + (parseInt(r.adultos) || 0), 0);
+    const totalKids = rows.reduce((s, r) => s + (parseInt(r.ninos) || 0), 0);
+    const totalBus = rows.filter(r => r.transporte && r.transporte !== 'no').length;
+    const totalPre = rows.filter(r => r.preboda === 'si').length;
+    stats.innerHTML = `
+      <div class="stat-box"><div class="stat-num">${rows.length}</div><div class="stat-label">Confirmaciones</div></div>
+      <div class="stat-box"><div class="stat-num">${totalAdults}</div><div class="stat-label">Adultos</div></div>
+      <div class="stat-box"><div class="stat-num">${totalKids}</div><div class="stat-label">Niños</div></div>
+      <div class="stat-box"><div class="stat-num">${totalBus}</div><div class="stat-label">Transporte</div></div>
+      <div class="stat-box"><div class="stat-num">${totalPre}</div><div class="stat-label">Pre-boda</div></div>
+    `;
+
+    // Rows
+    rows.forEach(r => {
+      const tr = document.createElement('tr');
+      tr.id = `row-${r.id}`;
+      tr.style.borderBottom = '1px solid var(--gold-light)';
+      tr.innerHTML = `
+        <td style="padding:0.6rem 0.5rem;white-space:nowrap;color:var(--light-text);font-size:0.75rem;">${new Date(r.fecha).toLocaleDateString('es-ES')}</td>
+        <td style="padding:0.6rem 0.5rem;"><strong>${escHtml(r.nombre)}</strong></td>
+        <td style="padding:0.6rem 0.5rem;text-align:center;">${r.adultos}</td>
+        <td style="padding:0.6rem 0.5rem;text-align:center;">${r.ninos || 0}</td>
+        <td style="padding:0.6rem 0.5rem;text-align:center;">${r.bebes && r.bebes !== 'no' ? '👶 '+r.bebes : '—'}</td>
+        <td style="padding:0.6rem 0.5rem;text-align:center;">${r.transporte && r.transporte !== 'no' ? '✅ '+r.transporte : '—'}</td>
+        <td style="padding:0.6rem 0.5rem;text-align:center;">${r.preboda === 'si' ? '✅' : '—'}</td>
+        <td style="padding:0.6rem 0.5rem;max-width:120px;font-size:0.78rem;">${escHtml(r.alergias || '—')}</td>
+        <td style="padding:0.6rem 0.5rem;max-width:120px;font-size:0.78rem;">${escHtml(r.canciones || '—')}</td>
+        <td style="padding:0.6rem 0.5rem;max-width:160px;font-size:0.78rem;">${escHtml(r.mensaje || '—')}</td>
+        <td style="padding:0.6rem 0.5rem;white-space:nowrap;text-align:center;">
+          <button onclick="editRow(${r.id})" style="background:none;border:1px solid var(--gold);color:var(--gold);border-radius:2px;padding:0.25rem 0.5rem;cursor:pointer;font-size:0.7rem;margin-right:0.25rem;">✏️</button>
+          <button onclick="deleteRow(${r.id})" style="background:none;border:1px solid #c07070;color:#c07070;border-radius:2px;padding:0.25rem 0.5rem;cursor:pointer;font-size:0.7rem;">🗑️</button>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+    // Store rows globally for export
+    window._adminRows = rows;
+
+  } catch(e) {
+    loading.style.display = 'none';
+    console.error(e);
+    stats.innerHTML = `<p style="color:#c07070;padding:1rem;">Error al cargar datos: ${e.message}</p>`;
+  }
+}
+
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+async function editRow(id) {
+  const rows = window._adminRows || [];
+  const r = rows.find(x => x.id === id);
+  if (!r) return;
+
+  const fields = [
+    { key: 'nombre',     label: 'Nombre',     val: r.nombre },
+    { key: 'adultos',    label: 'Adultos',     val: r.adultos },
+    { key: 'ninos',      label: 'Niños',       val: r.ninos },
+    { key: 'bebes',      label: 'Bebés',       val: r.bebes },
+    { key: 'transporte', label: 'Transporte',  val: r.transporte },
+    { key: 'preboda',    label: 'Pre-boda',    val: r.preboda },
+    { key: 'alergias',   label: 'Alergias',    val: r.alergias },
+    { key: 'canciones',  label: 'Canciones',   val: r.canciones },
+    { key: 'mensaje',    label: 'Mensaje',     val: r.mensaje },
+  ];
+
+  // Build inline edit form in the row
+  const tr = document.getElementById(`row-${id}`);
+  if (!tr) return;
+  tr.innerHTML = `
+    <td colspan="10" style="padding:1rem;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:0.75rem;">
+        ${fields.map(f => `
+          <label style="font-size:0.75rem;color:var(--mid);display:flex;flex-direction:column;gap:0.2rem;">
+            ${f.label}
+            <input data-field="${f.key}" value="${escHtml(f.val || '')}"
+              style="font-size:0.8rem;padding:0.35rem 0.5rem;border:1px solid var(--gold-light);border-radius:2px;background:var(--white);color:var(--dark);">
+          </label>`).join('')}
+      </div>
+      <div style="margin-top:1rem;display:flex;gap:0.5rem;">
+        <button onclick="saveRow(${id})" class="btn-primary" style="width:auto;padding:0.5rem 1rem;font-size:0.8rem;">💾 Guardar</button>
+        <button onclick="adminRefresh()" style="background:none;border:1px solid var(--gold-light);color:var(--mid);border-radius:2px;padding:0.5rem 1rem;cursor:pointer;font-size:0.8rem;">Cancelar</button>
+      </div>
+    </td>
+    <td></td>
+  `;
+}
+
+async function saveRow(id) {
+  const tr = document.getElementById(`row-${id}`);
+  const inputs = tr.querySelectorAll('[data-field]');
+  const updates = {};
+  inputs.forEach(i => { updates[i.dataset.field] = i.value; });
+  try {
+    await sbFetch(`rsvp?id=eq.${id}`, 'PATCH', updates);
+    adminRefresh();
+  } catch(e) {
+    alert('Error al guardar: ' + e.message);
+  }
+}
+
+async function deleteRow(id) {
+  if (!confirm('¿Eliminar esta respuesta?')) return;
+  try {
+    await sbFetch(`rsvp?id=eq.${id}`, 'DELETE');
+    adminRefresh();
+  } catch(e) {
+    alert('Error al eliminar: ' + e.message);
+  }
+}
+
+function exportExcel() {
+  const rows = window._adminRows || [];
+  if (!rows.length) { alert('No hay datos para exportar.'); return; }
+
+  const headers = ['Fecha','Nombre','Adultos','Niños','Bebés','Transporte','Pre-boda','Alergias','Canciones','Mensaje'];
+  const data = rows.map(r => [
+    new Date(r.fecha).toLocaleDateString('es-ES'),
+    r.nombre, r.adultos, r.ninos || 0, r.bebes || 'no',
+    r.transporte || 'no', r.preboda || 'no',
+    r.alergias || '', r.canciones || '', r.mensaje || ''
+  ]);
+
+  // Build CSV with BOM for Excel UTF-8
+  const csv = '\uFEFF' + [headers, ...data]
+    .map(row => row.map(v => `"${String(v).replace(/"/g,'""')}"`).join(','))
+    .join('\r\n');
+
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `rsvp_nuria_salva_${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
 }
 
 
