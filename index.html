@@ -2264,7 +2264,9 @@ async function submitRSVP() {
   try {
     await sbFetch('rsvp', 'POST', entry);
     document.getElementById('rsvp-form').style.display = 'none';
-    document.getElementById('rsvp-success').style.display = 'block';
+    const success = document.getElementById('rsvp-success');
+    success.style.display = 'block';
+    setTimeout(() => success.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
   } catch(e) {
     console.error('RSVP error:', e);
     btn.disabled = false;
@@ -2413,7 +2415,15 @@ async function saveRow(id) {
   const tr = document.getElementById(`row-${id}`);
   const inputs = tr.querySelectorAll('[data-field]');
   const updates = {};
-  inputs.forEach(i => { updates[i.dataset.field] = i.value; });
+  const intFields = ['adultos', 'ninos'];
+  inputs.forEach(i => {
+    const val = i.value;
+    if (intFields.includes(i.dataset.field)) {
+      updates[i.dataset.field] = val === '' ? 0 : parseInt(val) || 0;
+    } else {
+      updates[i.dataset.field] = val;
+    }
+  });
   try {
     await sbFetch(`rsvp?id=eq.${id}`, 'PATCH', updates);
     adminRefresh();
