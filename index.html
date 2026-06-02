@@ -923,9 +923,88 @@
     .countdown-num { font-size: clamp(2.2rem, 10vw, 3rem); min-width: 60px; }
     .countdown-grid { gap: 0.5rem; }
   }
+
+  /* ─── ENVELOPE INTRO ─── */
+  #sobre-ov {
+    position: fixed; inset: 0; z-index: 9999;
+  }
+  #sobre-ov .s-panel {
+    position: absolute;
+  }
+  #sobre-ov #ft {
+    top: 0; left: 0; right: 0; height: 50%;
+    background: linear-gradient(to bottom, #ede6d8, #ddd3c0);
+    transform: translateY(0);
+    transition: transform 1.6s cubic-bezier(0.77,0,0.18,1) 0s;
+  }
+  #sobre-ov #fb {
+    bottom: 0; left: 0; right: 0; height: 50%;
+    background: linear-gradient(to top, #d8cfc0, #e4ddd0);
+    transform: translateY(0);
+    transition: transform 1.6s cubic-bezier(0.77,0,0.18,1) 0s;
+  }
+  #sobre-ov #fl {
+    top: 0; bottom: 0; left: 0; width: 50%;
+    background: linear-gradient(to right, #e0d9cc, #ddd4c4);
+    transform: translateX(0);
+    transition: transform 1.6s cubic-bezier(0.77,0,0.18,1) 0s;
+  }
+  #sobre-ov #fr {
+    top: 0; bottom: 0; right: 0; width: 50%;
+    background: linear-gradient(to left, #e0d9cc, #ddd4c4);
+    transform: translateX(0);
+    transition: transform 1.6s cubic-bezier(0.77,0,0.18,1) 0s;
+  }
+  #sobre-ov #ft.open { transform: translateY(-100%); }
+  #sobre-ov #fb.open { transform: translateY(100%);  }
+  #sobre-ov #fl.open { transform: translateX(-100%); }
+  #sobre-ov #fr.open { transform: translateX(100%);  }
+  #sobre-ov .s-logo {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 10; pointer-events: none;
+  }
+  #sobre-ov .s-logo svg {
+    width: clamp(160px, 28vw, 260px);
+    height: clamp(160px, 28vw, 260px);
+    filter: drop-shadow(0 4px 24px rgba(42,33,24,0.18));
+  }
 </style>
 </head>
 <body>
+
+<!-- ENVELOPE INTRO -->
+<div id="sobre-ov">
+  <div class="s-panel" id="ft"></div>
+  <div class="s-panel" id="fb"></div>
+  <div class="s-panel" id="fl"></div>
+  <div class="s-panel" id="fr"></div>
+  <div class="s-logo">
+    <svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(130,130)">
+        <line x1="0" y1="-92" x2="0" y2="-72" stroke="#4a5e3a" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M-2,-76 Q-32,-100 -28,-68 Q-24,-48 -2,-76z" fill="#4a5e3a"/>
+        <path d="M2,-76 Q32,-100 28,-68 Q24,-48 2,-76z" fill="#4a5e3a"/>
+        <circle cx="0" cy="-92" r="3.5" fill="#4a5e3a"/>
+        <ellipse cx="0" cy="0" rx="54" ry="60" fill="none" stroke="#c9a96e" stroke-width="2.5"/>
+        <ellipse cx="0" cy="0" rx="48" ry="54" fill="none" stroke="#e8d5b0" stroke-width="1"/>
+        <line x1="0" y1="-60" x2="0" y2="60" stroke="#e8d5b0" stroke-width="0.8" opacity="0.5"/>
+        <line x1="-54" y1="0" x2="54" y2="0" stroke="#e8d5b0" stroke-width="0.8" opacity="0.5"/>
+        <line x1="-38" y1="-42" x2="38" y2="42" stroke="#e8d5b0" stroke-width="0.6" opacity="0.4"/>
+        <line x1="38" y1="-42" x2="-38" y2="42" stroke="#e8d5b0" stroke-width="0.6" opacity="0.4"/>
+        <text x="-10" y="15" text-anchor="middle"
+              font-family="Palatino Linotype,Palatino,Book Antiqua,serif"
+              font-size="62" font-weight="400" fill="#2a2118" font-style="italic">N</text>
+        <text x="12" y="15" text-anchor="middle"
+              font-family="Palatino Linotype,Palatino,Book Antiqua,serif"
+              font-size="62" font-weight="400" fill="#c9a96e" font-style="italic">S</text>
+        <text x="0" y="78" text-anchor="middle"
+              font-family="Arial,sans-serif" font-size="11"
+              font-weight="300" fill="#9c8b77" letter-spacing="4">12 · 12 · 2026</text>
+      </g>
+    </svg>
+  </div>
+</div>
 
 <!-- LANGUAGE SWITCHER -->
 <div class="lang-bar">
@@ -2628,6 +2707,21 @@ function exportExcel() {
   URL.revokeObjectURL(url);
 }
 
+
+// ─── ENVELOPE INTRO ─────────────────────────────────────────────────────────
+(function() {
+  var ov = document.getElementById('sobre-ov');
+  if (!ov) return;
+  setTimeout(function() {
+    document.getElementById('ft').classList.add('open');
+    document.getElementById('fb').classList.add('open');
+    document.getElementById('fl').classList.add('open');
+    document.getElementById('fr').classList.add('open');
+    setTimeout(function() {
+      if (ov.parentNode) ov.parentNode.removeChild(ov);
+    }, 1800);
+  }, 3000);
+})();
 
 </script>
 </body>
