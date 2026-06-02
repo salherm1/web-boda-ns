@@ -930,28 +930,34 @@
   }
   #sobre-ov .s-panel {
     position: absolute;
+    z-index: 2;
   }
   #sobre-ov #ft {
     top: 0; left: 0; right: 0; height: 50%;
     background: linear-gradient(to bottom, #ede6d8, #ddd3c0);
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
     transform: translateY(0);
     transition: transform 1.6s cubic-bezier(0.77,0,0.18,1) 0s;
+    box-shadow: 0 2px 8px rgba(42,33,24,0.12);
   }
   #sobre-ov #fb {
     bottom: 0; left: 0; right: 0; height: 50%;
-    background: linear-gradient(to top, #d8cfc0, #e4ddd0);
+    background: linear-gradient(to top, #d5ccbc, #e0d8ca);
+    clip-path: polygon(0 100%, 100% 100%, 50% 0%);
     transform: translateY(0);
     transition: transform 1.6s cubic-bezier(0.77,0,0.18,1) 0s;
   }
   #sobre-ov #fl {
     top: 0; bottom: 0; left: 0; width: 50%;
-    background: linear-gradient(to right, #e0d9cc, #ddd4c4);
+    background: linear-gradient(to right, #e8e0d2, #ddd6c8);
+    clip-path: polygon(0 0, 0 100%, 100% 50%);
     transform: translateX(0);
     transition: transform 1.6s cubic-bezier(0.77,0,0.18,1) 0s;
   }
   #sobre-ov #fr {
     top: 0; bottom: 0; right: 0; width: 50%;
-    background: linear-gradient(to left, #e0d9cc, #ddd4c4);
+    background: linear-gradient(to left, #e8e0d2, #ddd6c8);
+    clip-path: polygon(100% 0, 100% 100%, 0 50%);
     transform: translateX(0);
     transition: transform 1.6s cubic-bezier(0.77,0,0.18,1) 0s;
   }
@@ -963,6 +969,11 @@
     position: absolute; inset: 0;
     display: flex; align-items: center; justify-content: center;
     z-index: 10; pointer-events: none;
+    transform: translateY(0);
+    transition: transform 1.6s cubic-bezier(0.77,0,0.18,1) 0s;
+  }
+  #sobre-ov .s-logo.open {
+    transform: translateY(-100%);
   }
   #sobre-ov .s-logo svg {
     width: clamp(160px, 28vw, 260px);
@@ -979,7 +990,7 @@
   <div class="s-panel" id="fb"></div>
   <div class="s-panel" id="fl"></div>
   <div class="s-panel" id="fr"></div>
-  <div class="s-logo">
+  <div class="s-logo" id="sobre-logo">
     <svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
       <g transform="translate(130,130)">
         <line x1="0" y1="-92" x2="0" y2="-72" stroke="#4a5e3a" stroke-width="2.5" stroke-linecap="round"/>
@@ -2717,6 +2728,7 @@ function exportExcel() {
     document.getElementById('fb').classList.add('open');
     document.getElementById('fl').classList.add('open');
     document.getElementById('fr').classList.add('open');
+    document.getElementById('sobre-logo').classList.add('open');
     setTimeout(function() {
       if (ov.parentNode) ov.parentNode.removeChild(ov);
     }, 1800);
