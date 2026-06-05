@@ -2778,33 +2778,37 @@ function exportExcel() {
 
 
 // ─── ENVELOPE INTRO ─────────────────────────────────────────────────────────
+// Lock body scroll while overlay is visible (prevents mobile keyboard shift)
+document.body.style.position = 'fixed';
+document.body.style.top = '0';
+document.body.style.left = '0';
+document.body.style.right = '0';
+
 function checkSobrePw() {
   var input = document.getElementById('sobre-input');
   var err   = document.getElementById('sobre-err');
   var ov    = document.getElementById('sobre-ov');
   if (!input) return;
   if (input.value.trim().toLowerCase() === 'vlc1212') {
-    // Blur input first to dismiss mobile keyboard before animating
+    // 1. Dismiss keyboard
     input.blur();
-    // Small delay to let keyboard close and layout settle
+    // 2. Restore body scroll locked at top (no jump)
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    document.body.style.overflow = '';
+    window.scrollTo(0, 0);
+    // 3. Open panels immediately
+    document.getElementById('sobre-pw').style.display = 'none';
+    ['ft','fb','fl','fr'].forEach(function(id) {
+      document.getElementById(id).classList.add('open');
+    });
+    document.getElementById('sobre-logo').classList.add('open');
+    // 4. Remove overlay after animation
     setTimeout(function() {
-      document.getElementById('sobre-pw').style.display = 'none';
-      ['ft','fb','fl','fr'].forEach(function(id) {
-        document.getElementById(id).classList.add('open');
-      });
-      document.getElementById('sobre-logo').classList.add('open');
-      // Force scroll to top immediately
-      window.scrollTo(0, 0);
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
-      setTimeout(function() {
-        if (ov && ov.parentNode) ov.parentNode.removeChild(ov);
-        // Scroll to top again after overlay removed
-        window.scrollTo(0, 0);
-        document.documentElement.scrollTop = 0;
-        document.body.scrollTop = 0;
-      }, 1800);
-    }, 300);
+      if (ov && ov.parentNode) ov.parentNode.removeChild(ov);
+    }, 1800);
   } else {
     err.style.opacity = '1';
     input.style.borderColor = '#c07070';
