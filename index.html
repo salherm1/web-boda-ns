@@ -928,6 +928,9 @@
   #sobre-ov {
     position: fixed; inset: 0; z-index: 9999;
   }
+  body:has(#sobre-ov) {
+    overflow: hidden;
+  }
   #sobre-ov .s-panel {
     position: absolute;
     z-index: 2;
@@ -2781,19 +2784,28 @@ function checkSobrePw() {
   var ov    = document.getElementById('sobre-ov');
   if (!input) return;
   if (input.value.trim().toLowerCase() === 'vlc1212') {
-    // Hide password UI
-    document.getElementById('sobre-pw').style.display = 'none';
-    // Open all panels + logo
-    ['ft','fb','fl','fr'].forEach(function(id) {
-      document.getElementById(id).classList.add('open');
-    });
-    document.getElementById('sobre-logo').classList.add('open');
-    // Remove overlay after animation
+    // Blur input first to dismiss mobile keyboard before animating
+    input.blur();
+    // Small delay to let keyboard close and layout settle
     setTimeout(function() {
-      if (ov && ov.parentNode) ov.parentNode.removeChild(ov);
-    }, 1800);
+      document.getElementById('sobre-pw').style.display = 'none';
+      ['ft','fb','fl','fr'].forEach(function(id) {
+        document.getElementById(id).classList.add('open');
+      });
+      document.getElementById('sobre-logo').classList.add('open');
+      // Force scroll to top immediately
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      setTimeout(function() {
+        if (ov && ov.parentNode) ov.parentNode.removeChild(ov);
+        // Scroll to top again after overlay removed
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      }, 1800);
+    }, 300);
   } else {
-    // Wrong password — shake and show error
     err.style.opacity = '1';
     input.style.borderColor = '#c07070';
     input.value = '';
