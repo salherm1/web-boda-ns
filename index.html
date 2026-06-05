@@ -45,6 +45,9 @@
     background: var(--cream);
     color: var(--dark);
     font-weight: 300;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   /* ─── HERO ─── */
@@ -2783,6 +2786,8 @@ document.body.style.position = 'fixed';
 document.body.style.top = '0';
 document.body.style.left = '0';
 document.body.style.right = '0';
+document.body.style.width = '100%';
+document.body.style.overflowX = 'hidden';
 
 function checkSobrePw() {
   var input = document.getElementById('sobre-input');
@@ -2798,6 +2803,8 @@ function checkSobrePw() {
     document.body.style.left = '';
     document.body.style.right = '';
     document.body.style.overflow = '';
+    document.body.style.width = '';
+    document.body.style.overflowX = 'hidden';
     window.scrollTo(0, 0);
     // 3. Open panels immediately
     document.getElementById('sobre-pw').style.display = 'none';
