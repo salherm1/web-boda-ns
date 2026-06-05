@@ -1015,6 +1015,34 @@
       </g>
     </svg>
   </div>
+  <!-- Password prompt -->
+  <div id="sobre-pw" style="
+    position:absolute; bottom: clamp(3rem,10vh,6rem); left:50%; transform:translateX(-50%);
+    display:flex; flex-direction:column; align-items:center; gap:0.75rem;
+    z-index:20; width: clamp(220px,50vw,320px);
+  ">
+    <p style="font-family:'Jost',sans-serif; font-size:0.7rem; letter-spacing:0.3em;
+               text-transform:uppercase; color:#9c8b77; margin:0; text-align:center;">
+      Introduce la contraseña
+    </p>
+    <div style="display:flex; gap:0.5rem; width:100%;">
+      <input id="sobre-input" type="password" placeholder="········"
+        style="flex:1; padding:0.6rem 1rem; border:1px solid #c9a96e; background:rgba(255,255,255,0.85);
+               border-radius:2px; font-family:'Jost',sans-serif; font-size:0.9rem;
+               color:#2a2118; outline:none; text-align:center;"
+        onkeydown="if(event.key==='Enter') checkSobrePw()">
+      <button onclick="checkSobrePw()" style="
+        padding:0.6rem 1.1rem; background:#c9a96e; border:none; border-radius:2px;
+        font-family:'Jost',sans-serif; font-size:0.85rem; color:#2a2118;
+        cursor:pointer; font-weight:500; white-space:nowrap;">
+        Abrir
+      </button>
+    </div>
+    <p id="sobre-err" style="font-family:'Jost',sans-serif; font-size:0.75rem;
+       color:#c07070; margin:0; opacity:0; transition:opacity 0.3s ease;">
+      Contraseña incorrecta
+    </p>
+  </div>
 </div>
 
 <!-- LANGUAGE SWITCHER -->
@@ -1564,10 +1592,22 @@
       <div class="hotel-name">Hotel Balandret</div>
       <div class="hotel-stars">★★★★</div>
       <div class="hotel-desc" data-es="Encantador hotel boutique en la zona de playa de Valencia. Ambiente íntimo, decoración cuidada y excelente ubicación junto a la Malvarrosa."
-           data-en="A charming boutique hotel in Valencia's beach area. Intimate atmosphere, thoughtful décor and excellent location near Malvarrosa beach.">
+           data-en="A charming boutique hotel in Valencia's beach area. Intimate atmosphere, thoughtful décor and excellent location near Malvarrosa beach."
+           data-va="Encantador hotel boutique a la zona de platja de València. Ambient íntim, decoració acurada i excel·lent ubicació junt a la Malva-rosa.">
         Encantador hotel boutique en la zona de playa de Valencia. Ambiente íntimo, decoración cuidada y excelente ubicación junto a la Malvarrosa.
       </div>
-      <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Balandret+Valencia+playa" target="_blank" class="map-link">📍 <span data-es="Ver en Google Maps" data-en="View on Maps">Ver en Google Maps</span></a>
+      <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Balandret+Valencia+playa" target="_blank" class="map-link">📍 <span data-es="Ver en Google Maps" data-en="View on Maps" data-va="Veure a Google Maps">Ver en Google Maps</span></a>
+    </div>
+
+    <div class="hotel-card">
+      <div class="hotel-name">Sabbia Valencia</div>
+      <div class="hotel-stars">★★★★</div>
+      <div class="hotel-desc" data-es="Hotel boutique en la Playa de la Malvarrosa, a pocos pasos del Hotel Las Arenas. Ambiente íntimo y cuidado, con la playa y el mar Mediterráneo a la puerta."
+           data-en="Boutique hotel on the Playa de la Malvarrosa, just steps from Hotel Las Arenas. An intimate and carefully curated atmosphere, with the beach and the Mediterranean right on your doorstep."
+           data-va="Hotel boutique a la Platja de la Malva-rosa, a pocs passos de l'Hotel Las Arenas. Ambient íntim i acurat, amb la platja i el mar Mediterrani a la porta.">
+        Hotel boutique en la Playa de la Malvarrosa, a pocos pasos del Hotel Las Arenas. Ambiente íntimo y cuidado, con la playa y el mar Mediterráneo a la puerta.
+      </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=Sabbia+Valencia+hotel+Malvarrosa" target="_blank" class="map-link">📍 <span data-es="Ver en Google Maps" data-en="View on Maps" data-va="Veure a Google Maps">Ver en Google Maps</span></a>
     </div>
 
   </div>
@@ -2720,20 +2760,35 @@ function exportExcel() {
 
 
 // ─── ENVELOPE INTRO ─────────────────────────────────────────────────────────
-(function() {
-  var ov = document.getElementById('sobre-ov');
-  if (!ov) return;
-  setTimeout(function() {
-    document.getElementById('ft').classList.add('open');
-    document.getElementById('fb').classList.add('open');
-    document.getElementById('fl').classList.add('open');
-    document.getElementById('fr').classList.add('open');
+function checkSobrePw() {
+  var input = document.getElementById('sobre-input');
+  var err   = document.getElementById('sobre-err');
+  var ov    = document.getElementById('sobre-ov');
+  if (!input) return;
+  if (input.value.trim().toLowerCase() === 'vlc1212') {
+    // Hide password UI
+    document.getElementById('sobre-pw').style.display = 'none';
+    // Open all panels + logo
+    ['ft','fb','fl','fr'].forEach(function(id) {
+      document.getElementById(id).classList.add('open');
+    });
     document.getElementById('sobre-logo').classList.add('open');
+    // Remove overlay after animation
     setTimeout(function() {
-      if (ov.parentNode) ov.parentNode.removeChild(ov);
+      if (ov && ov.parentNode) ov.parentNode.removeChild(ov);
     }, 1800);
-  }, 3000);
-})();
+  } else {
+    // Wrong password — shake and show error
+    err.style.opacity = '1';
+    input.style.borderColor = '#c07070';
+    input.value = '';
+    input.focus();
+    setTimeout(function() {
+      err.style.opacity = '0';
+      input.style.borderColor = '#c9a96e';
+    }, 2500);
+  }
+}
 
 </script>
 </body>
