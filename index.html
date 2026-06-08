@@ -1025,29 +1025,15 @@
   <div id="sobre-pw" style="
     position:absolute; bottom: clamp(3rem,10vh,6rem); left:50%; transform:translateX(-50%);
     display:flex; flex-direction:column; align-items:center; gap:0.75rem;
-    z-index:20; width: clamp(220px,50vw,320px);
+    z-index:20;
   ">
-    <p style="font-family:'Jost',sans-serif; font-size:0.7rem; letter-spacing:0.3em;
-               text-transform:uppercase; color:#9c8b77; margin:0; text-align:center;">
-      Introduce la contraseña
-    </p>
-    <div style="display:flex; gap:0.5rem; width:100%;">
-      <input id="sobre-input" type="password" placeholder="········"
-        style="flex:1; padding:0.6rem 1rem; border:1px solid #c9a96e; background:rgba(255,255,255,0.85);
-               border-radius:2px; font-family:'Jost',sans-serif; font-size:0.9rem;
-               color:#2a2118; outline:none; text-align:center;"
-        onkeydown="if(event.key==='Enter') checkSobrePw()">
-      <button onclick="checkSobrePw()" style="
-        padding:0.6rem 1.1rem; background:#c9a96e; border:none; border-radius:2px;
-        font-family:'Jost',sans-serif; font-size:0.85rem; color:#2a2118;
-        cursor:pointer; font-weight:500; white-space:nowrap;">
-        Abrir
-      </button>
-    </div>
-    <p id="sobre-err" style="font-family:'Jost',sans-serif; font-size:0.75rem;
-       color:#c07070; margin:0; opacity:0; transition:opacity 0.3s ease;">
-      Contraseña incorrecta
-    </p>
+    <button onclick="abrirSobre()" style="
+      padding:0.75rem 2.5rem; background:#c9a96e; border:none; border-radius:2px;
+      font-family:'Jost',sans-serif; font-size:0.85rem; letter-spacing:0.25em;
+      text-transform:uppercase; color:#2a2118; cursor:pointer; font-weight:500;
+      box-shadow:0 2px 12px rgba(42,33,24,0.2);">
+      Abrir
+    </button>
   </div>
 </div>
 
@@ -1362,11 +1348,11 @@
       </div>
     </div>
     <div class="program-card fade-in">
-      <div class="program-time">~17:00</div>
+      <div class="program-time">~18:00</div>
       <div class="program-name" data-es="🎶 Fiesta & Barra libre" data-en="🎶 Party & Open bar">🎶 Fiesta & Barra libre</div>
-      <div class="program-desc" data-es="¡Qué empiece el baile! Barra libre a partir de las 17:00h — con horario mínimo hasta las 22:00h, aunque si la noche acompaña... ¡puede alargarse! Y no os preocupéis: os devolveremos a casa 🚌😊"
+      <div class="program-desc" data-es="¡Qué empiece el baile! Barra libre a partir de las 18:00h — con horario mínimo hasta las 23:00h, aunque si la noche acompaña... ¡puede alargarse! Y no os preocupéis: os devolveremos a casa 🚌😊"
            data-en="Let the dancing begin! Open bar from 5:00 PM — guaranteed until at least 10:00 PM, but if the night calls for it... it might just go on longer! And don't worry: we'll make sure you get home safe 🚌😊">
-        ¡Qué empiece el baile! Barra libre a partir de las 17:00h — con horario mínimo hasta las 22:00h, aunque si la noche acompaña... ¡puede alargarse! Y no os preocupéis: os devolveremos a casa 🚌😊
+        ¡Qué empiece el baile! Barra libre a partir de las 18:00h — con horario mínimo hasta las 23:00h, aunque si la noche acompaña... ¡puede alargarse! Y no os preocupéis: os devolveremos a casa 🚌😊
       </div>
     </div>
   </div>
@@ -1617,7 +1603,21 @@
            data-va="Encantador hotel boutique a la zona de platja de València. Ambient íntim, decoració acurada i excel·lent ubicació junt a la Malva-rosa.">
         Encantador hotel boutique en la zona de playa de Valencia. Ambiente íntimo, decoración cuidada y excelente ubicación junto a la Malvarrosa.
       </div>
-      <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Balandret+Valencia+playa" target="_blank" class="map-link">📍 <span data-es="Ver en Google Maps" data-en="View on Maps" data-va="Veure a Google Maps">Ver en Google Maps</span></a>
+      <div style="margin-top:0.85rem;padding:0.85rem 1rem;background:var(--warm);border:1px solid var(--gold-light);border-radius:2px;font-size:0.82rem;line-height:1.7;color:var(--mid);">
+        <div style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--light-text);margin-bottom:0.4rem;"
+             data-es="Código promocional" data-en="Promo code" data-va="Codi promocional">Código promocional</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:400;color:var(--dark);letter-spacing:0.05em;margin-bottom:0.5rem;">NURIAYSALVA</div>
+        <div data-es="17% de descuento sobre tarifa general · Reserva directamente en la web del hotel:"
+             data-en="17% off the standard rate · Book directly on the hotel website:"
+             data-va="17% de descompte sobre la tarifa general · Reserva directament a la web de l'hotel:">
+          17% de descuento sobre tarifa general · Reserva directamente en la web del hotel:
+        </div>
+        <a href="https://balandret.com/en/" target="_blank"
+           style="color:var(--gold);text-decoration:underline;font-size:0.82rem;">
+          balandret.com
+        </a>
+      </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Balandret+Valencia+playa" target="_blank" class="map-link" style="margin-top:0.75rem;">📍 <span data-es="Ver en Google Maps" data-en="View on Maps" data-va="Veure a Google Maps">Ver en Google Maps</span></a>
     </div>
 
     <div class="hotel-card">
@@ -1629,6 +1629,45 @@
         Hotel boutique en la Playa de la Malvarrosa, a pocos pasos del Hotel Las Arenas. Ambiente íntimo y cuidado, con la playa y el mar Mediterráneo a la puerta.
       </div>
       <a href="https://www.google.com/maps/search/?api=1&query=Sabbia+Valencia+hotel+Malvarrosa" target="_blank" class="map-link">📍 <span data-es="Ver en Google Maps" data-en="View on Maps" data-va="Veure a Google Maps">Ver en Google Maps</span></a>
+    </div>
+
+  </div>
+
+  <!-- Airbnb apartments -->
+  <div style="margin-top:2rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;">
+
+    <div class="hotel-card">
+      <div style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--light-text);margin-bottom:0.5rem;"
+           data-es="Apartamento · Centro de Valencia" data-en="Apartment · Valencia city centre" data-va="Apartament · Centre de València">
+        Apartamento · Centro de Valencia
+      </div>
+      <div class="hotel-name" style="font-size:1.1rem;">Alicia Vila — Apartamento 1</div>
+      <div class="hotel-desc" style="margin-top:0.5rem;"
+           data-es="Apartamento con 3 habitaciones dobles y 2 baños en el centro de Valencia. Conocemos a los dueños y tenemos precio especial con descuento. Si te interesa alquilarlo, ¡dinos y lo gestionamos!"
+           data-en="Apartment with 3 double bedrooms and 2 bathrooms in Valencia city centre. We know the owners and have a special discounted rate. Interested? Just let us know and we'll sort it out!"
+           data-va="Apartament amb 3 habitacions dobles i 2 banys al centre de València. Coneixem els propietaris i tenim preu especial amb descompte. Si t'interessa llogar-lo, digues-nos-ho i ho gestionem!">
+        Apartamento con 3 habitaciones dobles y 2 baños en el centro de Valencia. Conocemos a los dueños y tenemos precio especial con descuento. Si te interesa alquilarlo, ¡dinos y lo gestionamos!
+      </div>
+      <a href="https://airbnb.com/h/aliciavila" target="_blank" class="map-link" style="margin-top:0.75rem;">
+        🏠 <span data-es="Ver en Airbnb" data-en="View on Airbnb" data-va="Veure a Airbnb">Ver en Airbnb</span>
+      </a>
+    </div>
+
+    <div class="hotel-card">
+      <div style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--light-text);margin-bottom:0.5rem;"
+           data-es="Apartamento · Centro de Valencia" data-en="Apartment · Valencia city centre" data-va="Apartament · Centre de València">
+        Apartamento · Centro de Valencia
+      </div>
+      <div class="hotel-name" style="font-size:1.1rem;">Alicia Vila — Apartamento 2</div>
+      <div class="hotel-desc" style="margin-top:0.5rem;"
+           data-es="Segundo apartamento con 3 habitaciones dobles y 2 baños en el centro de Valencia. Mismas condiciones: precio especial por ser invitados de la boda. Contactadnos si queréis reservarlo."
+           data-en="Second apartment with 3 double bedrooms and 2 bathrooms in Valencia city centre. Same deal: special wedding-guest rate. Get in touch if you'd like to book it."
+           data-va="Segon apartament amb 3 habitacions dobles i 2 banys al centre de València. Mateixes condicions: preu especial per ser convidats del casament. Contacteu-nos si el voleu reservar.">
+        Segundo apartamento con 3 habitaciones dobles y 2 baños en el centro de Valencia. Mismas condiciones: precio especial por ser invitados de la boda. Contactadnos si queréis reservarlo.
+      </div>
+      <a href="https://airbnb.com/h/apartmentvila2" target="_blank" class="map-link" style="margin-top:0.75rem;">
+        🏠 <span data-es="Ver en Airbnb" data-en="View on Airbnb" data-va="Veure a Airbnb">Ver en Airbnb</span>
+      </a>
     </div>
 
   </div>
@@ -1978,11 +2017,12 @@
           <span style="color:var(--gold);font-size:1.4rem;flex-shrink:0;">+</span>
         </summary>
         <p style="margin-top:1rem;font-size:0.9rem;line-height:1.8;color:var(--mid);"
-           data-es="Si necesitas servicio de peluquería o maquillaje, contáctanos — tenemos varios contactos de confianza en la zona y te ayudamos a gestionarlo."
-           data-en="If you need hair or make-up services, just get in touch — we have several trusted contacts in the area and can help you arrange it."
+           data-es="Si necesitas servicio de peluquería o maquillaje, contacta con <a href='tel:+34603024222' style='color:var(--gold);'>Amparo (+34 603 02 42 22)</a> — ella tiene contactos de confianza cerca del hotel y en Valencia y te ayudará a gestionarlo."
+           data-en="If you need hair or make-up services, get in touch with <a href='tel:+34603024222' style='color:var(--gold);'>Amparo (+34 603 02 42 22)</a> — she has trusted contacts near the hotel and across Valencia and will help you arrange everything."
+           data-va="Si necessites servei de perruqueria o maquillatge, contacta amb <a href='tel:+34603024222' style='color:var(--gold);'>Amparo (+34 603 02 42 22)</a> — ella té contactes de confiança prop de l'hotel i a València i t'ajudarà a gestionar-ho."
            data-va="Si necessites servei de perruqueria o maquillatge, contacta’ns — tenim diversos contactes de confiança a la zona i t’ajudem a gestionar-ho."
            data-va="El propi Hotel Las Arenas disposa de saló de perruqueria i serveis d'estètica. Si ho necessites, et recomanem reservar amb antelació directament amb l'hotel. També hi ha salons de perruqueria i maquillatge professional als voltants. Si necessites orientació, escriu-nos i t'ajudem a trobar la millor opció.">
-          Si necesitas servicio de peluquería o maquillaje, contáctanos — tenemos varios contactos de confianza en la zona y te ayudamos a gestionarlo.
+          Si necesitas servicio de peluquería o maquillaje, contacta con <a href='tel:+34603024222' style='color:var(--gold);'>Amparo (+34 603 02 42 22)</a> — ella tiene contactos de confianza cerca del hotel y en Valencia y te ayudará a gestionarlo.
         </p>
       </details>
 
@@ -1996,10 +2036,10 @@
           <span style="color:var(--gold);font-size:1.4rem;flex-shrink:0;display:inline-block;-webkit-transition:transform 0.2s;transition:transform 0.2s;">+</span>
         </summary>
         <p style="margin-top:1rem;font-size:0.9rem;line-height:1.8;color:var(--mid);"
-           data-es="¡Nos haría enormemente felices contar con participaciones de amigos y familiares en la ceremonia, el banquete o la fiesta! Si tienes algo que quieres decir, leer, cantar o compartir en cualquier momento del día, escríbenos y lo hablamos. Y si quieres preparar algo sin que nos enteremos, también puedes contactar directamente con la ceremoniante <a href='tel:+34657152141' style='color:var(--gold);'>Fátima (+34 657 15 21 41)</a> o con las coordinadoras del hotel: <a href='mailto:pilar.fontes@hsantos.es' style='color:var(--gold);'>pilar.fontes@hsantos.es</a> o <a href='mailto:sofia.lujan@hsantos.es' style='color:var(--gold);'>sofia.lujan@hsantos.es</a>"
-           data-en="We would absolutely love to have friends and family take part in the ceremony, banquet or party! If you&apos;d like to say something, do a reading, sing or share anything during the day, just reach out. And if you want to prepare a surprise without us knowing, you can contact the officiant directly: <a href='tel:+34657152141' style='color:var(--gold);'>Fátima (+34 657 15 21 41)</a> or the hotel coordinators: <a href='mailto:pilar.fontes@hsantos.es' style='color:var(--gold);'>pilar.fontes@hsantos.es</a> or <a href='mailto:sofia.lujan@hsantos.es' style='color:var(--gold);'>sofia.lujan@hsantos.es</a>"
-           data-va="Ens faria enormement feliços comptar amb participacions d&apos;amics i familiars a la cerimònia, el banquet o la festa! Si tens alguna cosa que vols dir, llegir, cantar o compartir en qualsevol moment del dia, escriu-nos i ho parlem. I si vols preparar alguna cosa sense que ens assabentem, també pots contactar directament amb la cerimoniant <a href='tel:+34657152141' style='color:var(--gold);'>Fátima (+34 657 15 21 41)</a> o amb les coordinadores de l&apos;hotel: <a href='mailto:pilar.fontes@hsantos.es' style='color:var(--gold);'>pilar.fontes@hsantos.es</a> o <a href='mailto:sofia.lujan@hsantos.es' style='color:var(--gold);'>sofia.lujan@hsantos.es</a>">
-          ¡Nos haría enormemente felices contar con participaciones de amigos y familiares en la ceremonia, el banquete o la fiesta! Si tienes algo que quieres decir, leer, cantar o compartir en cualquier momento del día, escríbenos y lo hablamos. Y si quieres preparar algo sin que nos enteremos, también puedes contactar directamente con la ceremoniante <a href="tel:+34657152141" style="color:var(--gold);">Fátima (+34 657 15 21 41)</a> o con las coordinadoras del hotel: <a href="mailto:pilar.fontes@hsantos.es" style="color:var(--gold);">pilar.fontes@hsantos.es</a> o <a href="mailto:sofia.lujan@hsantos.es" style="color:var(--gold);">sofia.lujan@hsantos.es</a>
+           data-es="¡Nos haría enormemente felices contar con participaciones de amigos y familiares en la ceremonia, el banquete o la fiesta! Si tienes algo que quieres decir, leer, cantar o compartir en cualquier momento del día, escríbenos y lo hablamos. Y si quieres preparar algo sin que nos enteremos, contacta directamente con <a href='tel:+34603024222' style='color:var(--gold);'>Amparo (+34 603 02 42 22)</a>."
+           data-en="We would absolutely love to have friends and family take part in the ceremony, banquet or party! If you'd like to say something, do a reading, sing or share anything during the day, just reach out. And if you want to prepare a surprise without us knowing, contact <a href='tel:+34603024222' style='color:var(--gold);'>Amparo (+34 603 02 42 22)</a> directly."
+           data-va="Ens faria enormement feliços comptar amb participacions d&apos;amics i familiars a la cerimònia, el banquet o la festa! Si tens alguna cosa que vols dir, llegir, cantar o compartir en qualsevol moment del dia, escriu-nos i ho parlem. I si vols preparar alguna cosa sense que ens assabentem, contacta directament amb <a href='tel:+34603024222' style='color:var(--gold);'>Amparo (+34 603 02 42 22)</a>.">
+          ¡Nos haría enormemente felices contar con participaciones de amigos y familiares en la ceremonia, el banquete o la fiesta! Si tienes algo que quieres decir, leer, cantar o compartir en cualquier momento del día, escríbenos y lo hablamos. Y si quieres preparar algo sin que nos enteremos, contacta directamente con <a href='tel:+34603024222' style='color:var(--gold);'>Amparo (+34 603 02 42 22)</a>.
         </p>
       </details>
 
@@ -2269,7 +2309,7 @@ const VA_TRANSLATIONS = {
   '🍽️ Banquete · Interior': '🍽️ Banquet · Interior',
   'En el elegante salón del hotel. Una experiencia gastronómica con los mejores productos de la tierra valenciana.': 'A l\'elegant saló de l\'hotel. Una experiència gastronòmica amb els millors productes de la terra valenciana.',
   '🎶 Fiesta & Barra libre': '🎶 Festa & Barra lliure',
-  '¡Qué empiece el baile! Barra libre a partir de las 17:00h — con horario mínimo hasta las 22:00h, aunque si la noche acompaña... ¡puede alargarse! Y no os preocupéis: os devolveremos a casa 🚌😊': 'Què comence el ball! Barra lliure a partir de les 17:00h — amb horari mínim fins a les 22:00h, però si la nit acompanya... pot allargar-se! I no us preocupeu: us tornarem a casa 🚌😊',
+  '¡Qué empiece el baile! Barra libre a partir de las 18:00h — con horario mínimo hasta las 23:00h, aunque si la noche acompaña... ¡puede alargarse! Y no os preocupéis: os devolveremos a casa 🚌😊': 'Què comence el ball! Barra lliure a partir de les 18:00h — amb horari mínim fins a les 23:00h, però si la nit acompanya... pot allargar-se! I no us preocupeu: us tornarem a casa 🚌😊',
   // RSVP
   'Confirmación de asistencia': 'Confirmació d\'assistència',
   'Por favor, confirma tu asistencia antes del 1 de octubre de 2026. Es muy importante para nosotros poder organizarlo todo con cariño.': 'Per favor, confirma la teua assistència abans de l\'1 d\'octubre de 2026. És molt important per a nosaltres poder organitzar-ho tot amb afecte.',
@@ -2357,9 +2397,9 @@ const VA_TRANSLATIONS = {
   '¿Cuál es el código de vestimenta?': 'Quin és el codi de vestimenta?',
   'El código de vestimenta es elegante — cocktail o formal. Tened en cuenta que la ceremonia y el cóctel son al aire libre en los jardines del hotel, así que os recomendamos llevar una chaqueta o abrigo ligero. 😊': 'El codi de vestimenta és elegant — còctel o formal. Teniu en compte que la cerimònia i el còctel són a l\'aire lliure als jardins de l\'hotel, per la qual cosa us recomanem portar una jaqueta o abric lleuger. 😊',
   '¿Necesito peluquería o maquillaje? ¿Dónde puedo hacerlo?': 'Necessito perruqueria o maquillatge? On puc fer-me\'l?',
-  'Si necesitas servicio de peluquería o maquillaje, contáctanos — tenemos varios contactos de confianza en la zona y te ayudamos a gestionarlo.': 'Si necessites servei de perruqueria o maquillatge, contacta\'ns — tenim diversos contactes de confiança a la zona i t\'ajudem a gestionar-ho.',
+  'Si necesitas servicio de peluquería o maquillaje, contacta con <a href=\'tel:+34603024222\' style=\'color:var(--gold);\'>Amparo (+34 603 02 42 22)</a> — ella tiene contactos de confianza cerca del hotel y en Valencia y te ayudará a gestionarlo.': 'Si necessites servei de perruqueria o maquillatge, contacta amb <a href=\'tel:+34603024222\' style=\'color:var(--gold);\'>Amparo (+34 603 02 42 22)</a> — ella té contactes de confiança prop de l\'hotel i a València i t\'ajudarà a gestionar-ho.',
   '¿Puedo participar en la ceremonia, banquete o fiesta?': 'Puc participar en la cerimònia, el banquet o la festa?',
-  '¡Nos haría enormemente felices contar con participaciones de amigos y familiares en la ceremonia, el banquete o la fiesta! Si tienes algo que quieres decir, leer, cantar o compartir en cualquier momento del día, escríbenos y lo hablamos. Y si quieres preparar algo sin que nos enteremos, también puedes contactar directamente con la ceremoniante <a href="tel:+34657152141" style="color:var(--gold);">Fátima (+34 657 15 21 41)</a> o con las coordinadoras del hotel: <a href="mailto:pilar.fontes@hsantos.es" style="color:var(--gold);">pilar.fontes@hsantos.es</a> o <a href="mailto:sofia.lujan@hsantos.es" style="color:var(--gold);">sofia.lujan@hsantos.es</a>': 'Ens faria enormement feliços comptar amb participacions d\'amics i familiars a la cerimònia, el banquet o la festa! Si tens alguna cosa que vols dir, llegir, cantar o compartir en qualsevol moment del dia, escriu-nos i ho parlem. Per a qualsevol consulta sobre la cerimònia pots contactar directament amb el nostre cerimoniant, i per al banquet o la sala amb les nostres coordinadores: pilar.fontes@hsantos.es o sofia.lujan@hsantos.es — i si vols preparar alguna cosa sense que ens assabentem, pots contactar-los directament',
+  '¡Nos haría enormemente felices contar con participaciones de amigos y familiares en la ceremonia, el banquete o la fiesta! Si tienes algo que quieres decir, leer, cantar o compartir en cualquier momento del día, escríbenos y lo hablamos. Y si quieres preparar algo sin que nos enteremos, contacta directamente con <a href=\'tel:+34603024222\' style=\'color:var(--gold);\'>Amparo (+34 603 02 42 22)</a>.': 'Ens faria enormement feliços comptar amb participacions d\'amics i familiars a la cerimònia, el banquet o la festa! Si tens alguna cosa que vols dir, llegir, cantar o compartir en qualsevol moment del dia, escriu-nos i ho parlem. Per a qualsevol consulta sobre la cerimònia pots contactar directament amb el nostre cerimoniant, i per al banquet o la sala amb les nostres coordinadores: I si vols preparar alguna cosa sense que ens assabentem, contacta directament amb <a href=\'tel:+34603024222\' style=\'color:var(--gold);\'>Amparo (+34 603 02 42 22)</a>.',
   '¿Cómo llego al hotel?': 'Com arribe a l\'hotel?',
   'El Hotel Las Arenas está en Eugenia Viñes 22-24, en la zona de playa de Valencia. Si estás alojado en Valencia, lo más cómodo es un taxi, VTC o el metro (líneas 4, 6 u 8, parada Eugenia Viñes). Desde Carcaixent y Castelló de la Ribera organizaremos servicio de autobús — indícalo en el formulario de confirmación y te informamos. Si venís en coche, habrá plazas de parking en el hotel (plazas limitadas) y también es fácil aparcar por la zona. Para cualquier duda, ¡contáctanos!': 'L\'Hotel Las Arenas està a Eugenia Viñes 22-24, a la zona de platja de València. Si estàs allotjat a València, el més còmode és un taxi, VTC o el metro (línies 4, 6 o 8, parada Eugenia Viñes). Des de Carcaixent i Castelló de la Ribera organitzarem servei d\'autobús — indica-ho en el formulari de confirmació i t\'informem. Si veniu en cotxe, hi haurà places d\'aparcament a l\'hotel (places limitades) i també és fàcil aparcar per la zona. Per a qualsevol dubte, contacta\'ns!',
   '¿Qué tiempo hará en diciembre en Valencia?': 'Quin temps farà al desembre a València?',
@@ -2781,7 +2821,6 @@ function exportExcel() {
 
 
 // ─── ENVELOPE INTRO ─────────────────────────────────────────────────────────
-// Lock body scroll while overlay is visible (prevents mobile keyboard shift)
 document.body.style.position = 'fixed';
 document.body.style.top = '0';
 document.body.style.left = '0';
@@ -2789,43 +2828,27 @@ document.body.style.right = '0';
 document.body.style.width = '100%';
 document.body.style.overflowX = 'hidden';
 
-function checkSobrePw() {
-  var input = document.getElementById('sobre-input');
-  var err   = document.getElementById('sobre-err');
-  var ov    = document.getElementById('sobre-ov');
-  if (!input) return;
-  if (input.value.trim().toLowerCase() === 'vlc1212') {
-    // 1. Dismiss keyboard
-    input.blur();
-    // 2. Restore body scroll locked at top (no jump)
-    document.body.style.position = '';
-    document.body.style.top = '';
-    document.body.style.left = '';
-    document.body.style.right = '';
-    document.body.style.overflow = '';
-    document.body.style.width = '';
-    document.body.style.overflowX = 'hidden';
-    window.scrollTo(0, 0);
-    // 3. Open panels immediately
-    document.getElementById('sobre-pw').style.display = 'none';
-    ['ft','fb','fl','fr'].forEach(function(id) {
-      document.getElementById(id).classList.add('open');
-    });
-    document.getElementById('sobre-logo').classList.add('open');
-    // 4. Remove overlay after animation
-    setTimeout(function() {
-      if (ov && ov.parentNode) ov.parentNode.removeChild(ov);
-    }, 1800);
-  } else {
-    err.style.opacity = '1';
-    input.style.borderColor = '#c07070';
-    input.value = '';
-    input.focus();
-    setTimeout(function() {
-      err.style.opacity = '0';
-      input.style.borderColor = '#c9a96e';
-    }, 2500);
-  }
+function abrirSobre() {
+  var ov = document.getElementById('sobre-ov');
+  if (!ov) return;
+  document.getElementById('sobre-pw').style.display = 'none';
+  // Restore body scroll
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.left = '';
+  document.body.style.right = '';
+  document.body.style.overflow = '';
+  document.body.style.width = '';
+  document.body.style.overflowX = 'hidden';
+  window.scrollTo(0, 0);
+  // Open panels
+  ['ft','fb','fl','fr'].forEach(function(id) {
+    document.getElementById(id).classList.add('open');
+  });
+  document.getElementById('sobre-logo').classList.add('open');
+  setTimeout(function() {
+    if (ov && ov.parentNode) ov.parentNode.removeChild(ov);
+  }, 1800);
 }
 
 </script>
